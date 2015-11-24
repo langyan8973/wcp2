@@ -1,0 +1,69 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- 
+   功能:用户,作者:FarmCode代码工程,日期:20141119144919
+-->
+<struts>
+	<package name="FarmAuthorityUserAjax" extends="json-default">
+		<!-- 用户查询 -->
+		<action name="FarmAuthorityUserQuery" method="queryall"
+			class="com.farm.authority.action.UserAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 机构用户查询 -->
+		<action name="FarmAuthorityOrgUserQuery" method="queryOrgUser"
+			class="com.farm.authority.action.UserAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 用户增加 -->
+		<action name="FarmAuthorityUseraddCommit" method="addSubmit"
+			class="com.farm.authority.action.UserAction">
+			<result type="json"></result>
+		</action>
+		<!-- 用户删除 -->
+		<action name="FarmAuthorityUserdeleteCommit" method="delSubmit"
+			class="com.farm.authority.action.UserAction">
+			<result type="json"></result>
+		</action>
+		<!-- 用户密码初始化 -->
+		<action name="FarmAuthorityUserInitPassWdCommit" method="initPassWord"
+			class="com.farm.authority.action.UserAction">
+			<result type="json"></result>
+		</action>
+		<!-- 用户修改 -->
+		<action name="FarmAuthorityUsereditCommit" method="editSubmit"
+			class="com.farm.authority.action.UserAction">
+			<result type="json"></result>
+		</action>
+		<!-- 修改当前用户密码 -->
+		<action name="LoginUser_PassWordUpdata" method="editPassword"
+			class="com.farm.authority.action.UserAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmAuthorityUserJsp" extends="struts-default">
+		<!-- 修改当前用户密码 -->
+		<action name="LoginUser_UpdataPassWord" method="forSend"
+			class="com.farm.authority.action.UserAction">
+			<result>/UI-BASE/PLAT/password.jsp</result>
+		</action>
+		<!-- 用户表单（浏览、新增、修改） -->
+		<action name="FarmAuthorityUserShow" method="view"
+			class="com.farm.authority.action.UserAction">
+			<result>/PLUGIN/authority/UserForm.jsp</result>
+		</action>
+		<!-- 用户管理首页 -->
+		<action name="FarmAuthorityUserConsole">
+			<result>/PLUGIN/authority/UserResult.jsp</result>
+		</action>
+		<!-- 选中用户页面 -->
+		<action name="FarmAuthorityUserChoose">
+			<result>/PLUGIN/authority/ChooseUserResult.jsp</result>
+		</action>
+	</package>
+</struts>

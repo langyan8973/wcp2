@@ -1,0 +1,47 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- 
+   功能:权限资源,作者:王东,日期:20141119144919
+-->
+<struts>
+	<package name="FarmAuthorityActionAjax" extends="json-default">
+		<!-- 权限资源查询 -->
+		<action name="FarmAuthorityActionQuery" method="queryall"
+			class="com.farm.authority.action.ActionAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 权限资源增加 -->
+		<action name="FarmAuthorityActionaddCommit" method="addSubmit"
+			class="com.farm.authority.action.ActionAction">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源删除 -->
+		<action name="FarmAuthorityActiondeleteCommit" method="delSubmit"
+			class="com.farm.authority.action.ActionAction">
+			<result type="json"></result>
+		</action>
+		<!-- 权限资源修改 -->
+		<action name="FarmAuthorityActioneditCommit" method="editSubmit"
+			class="com.farm.authority.action.ActionAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmAuthorityActionJsp" extends="struts-default">
+		<!-- 权限资源表单（浏览、新增、修改） -->
+		<action name="FarmAuthorityActionShow" method="view"
+			class="com.farm.authority.action.ActionAction">
+			<result>/PLUGIN/authority/ActionForm.jsp</result>
+		</action>
+		<!-- 权限资源管理首页 -->
+		<action name="FarmAuthorityActionConsole">
+			<result>/PLUGIN/authority/ActionResult.jsp</result>
+		</action>
+		<!-- 选择权限 -->
+		<action name="FarmAuthorityActionChoose">
+			<result>/PLUGIN/authority/ActionChoose.jsp</result>
+		</action>
+	</package>
+</struts>

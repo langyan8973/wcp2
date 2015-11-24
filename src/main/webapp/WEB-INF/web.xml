@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!--  jsp include 编码  -->
+	<jsp-config>
+		<jsp-property-group>
+			<description>
+				Special property group for JSP Configuration JSP
+				example.
+			</description>
+			<display-name>JSPConfiguration</display-name>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>utf-8</page-encoding>
+			<scripting-invalid>false</scripting-invalid>
+			<include-prelude />
+			<include-coda />
+		</jsp-property-group>
+	</jsp-config>
+	<!--  编码配置开始  -->
+	<filter>
+		<filter-name>Filter_Encoding</filter-name>
+		<filter-class>com.farm.web.filter.FilterEncoding</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Filter_Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!--  权限验证  -->
+	<filter>
+		<filter-name>Filter_VALIDATE</filter-name>
+		<filter-class>com.farm.web.filter.FilterValidate</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Filter_VALIDATE</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!--  日志信息  -->
+	<filter>
+		<filter-name>Filter_LOGINFO</filter-name>
+		<filter-class>com.farm.web.filter.FilterLogInfo</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Filter_LOGINFO</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!--  struts配置开始 -->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/index/*</url-pattern>
+	</filter-mapping>
+	<!--  struts配置结束 -->
+	
+	<!-- 初始化系统参数 -->
+	<servlet>
+		<servlet-name>SysInit</servlet-name>
+		<servlet-class>com.farm.web.task.SysInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<mime-mapping>
+		<extension>ico</extension>
+		<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/UI-BASE/PLAT/p404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/UI-BASE/PLAT/p500.jsp</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

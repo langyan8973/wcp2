@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      文档分类<import resource="classpath:com/farm/doc/config/FarmDoctypeContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 文档分类Dao实现 -->
+	<bean id="farm_doctypeDaoId"
+		class="com.farm.doc.dao.FarmDoctypeDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="FarmDoctype_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="FarmDoctype_object" class="com.farm.doc.domain.FarmDoctype"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,55 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="wcpStatis_Jsp_code" extends="struts-default">
+		<!-- 进入荣誉页面 -->
+		<action name="FPstatis" method="index"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/heros.jsp</result>
+		</action>
+		<!-- 加载好评文档统计 -->
+		<action name="FPloadgoodDocStatis" method="loadgoodDocStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/goodDoc.jsp</result>
+		</action>
+		<!-- 加载差评文档统计 -->
+		<action name="FPloadbadDocStatis" method="loadbadDocStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/badDoc.jsp</result>
+		</action>
+		<!-- 加载好评小组统计 -->
+		<action name="FPloadgoodGroupStatis" method="goodGroupStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/goodGroup.jsp</result>
+		</action>
+		<!-- 加载好评用户统计 -->
+		<action name="FPloadgoodUserStatis" method="loadgoodUserStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/goodUser.jsp</result>
+		</action>
+		<!-- 加载发布数量用户排名统计 -->
+		<action name="FPloadmanyDocUserStatis" method="manyDocUserStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/manyDocUser.jsp</result>
+		</action>
+		<!-- 加载我的排名统计 -->
+		<action name="loadmyStatis" method="loadmyStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/myStatis.jsp</result>
+		</action>
+		<!-- 加载我的排名统计 -->
+		<action name="FPloadmyStatis" method="loadmyStatis"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result>/UI-WEB/statis/commons/impl/myStatis.jsp</result>
+		</action>
+	</package>
+	<package name="wcpStatis_Json_code" extends="json-default">
+		<!-- 加载系统使用时间文档统计 -->
+		<action name="FPloadtimeLineStatis" method="timeLineStatisAjaxData"
+			class="com.farm.wcp.statis.web.action.ActionIndex">
+			<result type="json">
+			</result>
+		</action>
+	</package>
+</struts>

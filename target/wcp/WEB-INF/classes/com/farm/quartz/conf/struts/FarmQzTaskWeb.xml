@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      任务定义<include file="com/farm/quartz/web/conf/FarmQzTaskWeb.xml"></include> -->
+<struts>
+	<!-- 任务定义 -->
+	<package name="FarmQzTask_Ajax_code" extends="json-default">
+		<!-- 任务定义查询 -->
+		<action name="FarmQzTaskqueryAll" method="queryall"
+			class="com.farm.quartz.web.action.ActionFarmQzTaskQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 任务定义增加 -->
+		<action name="FarmQzTaskaddCommit" method="addSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTaskQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 任务定义删除 -->
+		<action name="FarmQzTaskdeleteCommit" method="delSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTaskQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 任务定义修改 -->
+		<action name="FarmQzTaskeditCommit" method="editSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTaskQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmQzTask_Jsp_code" extends="struts-default">
+		<!-- 任务定义详细【修改、浏览】 -->
+		<action name="FarmQzTaskshow" method="view"
+			class="com.farm.quartz.web.action.ActionFarmQzTaskQuery">
+			<result>/PLUGIN/quartz/pFarmQzTaskEntity.jsp</result>
+		</action>
+		<!-- html加载任务定义控制台 -->
+		<action name="FarmQzTask_ACTION_CONSOLE">
+			<result>/PLUGIN/quartz/pFarmQzTaskLayout.jsp</result>
+		</action>
+		<!-- ajax加载任务定义选择页面 -->
+		<action name="FarmQzTask_ACTION_ALERT" >
+			<result>/PLUGIN/quartz/pFarmQzTaskGrid.jsp</result>
+		</action>
+	</package>
+</struts>

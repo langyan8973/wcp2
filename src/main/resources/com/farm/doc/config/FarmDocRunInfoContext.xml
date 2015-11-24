@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		将该脚本加入spring配置文件中 文档管理<import
+		resource="classpath:com/farm/doc/config/FarmDocContext.xml"></import>
+	-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Server实现 -->
+	<bean id="farm_docruninfoServerId" class="com.farm.doc.server.FarmDocRunInfoImpl">
+		<property name="farmDocDao">
+			<ref bean="farm_docDaoId" />
+		</property>
+		<property name="farmDocruninfoDetailDao">
+			<ref bean="farm_docruninfo_detailDaoId" />
+		</property>
+		<property name="farmRfDoctypeDao">
+			<ref bean="farm_rf_doctypeDaoId" />
+		</property>
+		<property name="farmRfDoctextfileDao">
+			<ref bean="farm_rf_doctextfileDaoId" />
+		</property>
+		<property name="farmDoctextDao">
+			<ref bean="farm_doctextDaoId" />
+		</property>
+		<property name="farmDocfileDao">
+			<ref bean="farm_docfileDaoId" />
+		</property>
+		<property name="farmDoctypeDao">
+			<ref bean="farm_doctypeDaoId" />
+		</property>
+		<property name="farmDocmessageDao">
+			<ref bean="farm_docmessageDaoId" />
+		</property>
+		<property name="farmDocruninfoDao">
+			<ref bean="farm_docruninfoDaoId" />
+		</property>
+		<property name="farmDocenjoyDao">
+			<ref bean="farm_docenjoyDaoId" />
+		</property>
+		<property name="farmDocOperate">
+			<ref bean="farm_DocOperateId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="farm_docRunInfoProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.doc.server.FarmDocRunInfoInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="farm_docruninfoServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYfarm_docRunInfoTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYfarm_docRunInfoTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

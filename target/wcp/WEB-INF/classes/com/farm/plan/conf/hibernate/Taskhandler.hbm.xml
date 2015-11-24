@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+   功能:处理人,作者:FarmCode代码工程,日期:20141204174206
+-->
+<hibernate-mapping>
+    <class name="com.farm.plan.domain.Taskhandler" table="farm_plan_taskhandle">
+        <id name="id" 
+            type="java.lang.String">
+            <column name="ID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="compval" 
+            type="java.lang.Integer">
+            <column name="COMPVAL"  not-null="true"  />
+        </property>
+        <property name="compnote" 
+            type="java.lang.String">
+            <column name="COMPNOTE" length="2048"   />
+        </property>
+        <property name="dstate" 
+            type="java.lang.String">
+            <column name="DSTATE" length="1" not-null="true"  />
+        </property>
+        <property name="taskid" 
+            type="java.lang.String">
+            <column name="TASKID" length="32" not-null="true"  />
+        </property>
+        <property name="rstate" 
+            type="java.lang.String">
+            <column name="RSTATE" length="1" not-null="true"  />
+        </property>
+        <property name="ctime" 
+            type="java.lang.String">
+            <column name="CTIME" length="16" not-null="true"  />
+        </property>
+        <property name="etime" 
+            type="java.lang.String">
+            <column name="ETIME" length="16" not-null="true"  />
+        </property>
+        <property name="userid" 
+            type="java.lang.String">
+            <column name="USERID" length="32" not-null="true"  />
+        </property>
+        <property name="username" 
+            type="java.lang.String">
+            <column name="USERNAME" length="64" not-null="true"  />
+        </property>
+         <property name="pubuserid" 
+            type="java.lang.String">
+            <column name="PUBUSERID" length="32" not-null="true"  />
+        </property>
+        <property name="pubusername" 
+            type="java.lang.String">
+            <column name="PUBUSERNAME" length="64" not-null="true"  />
+        </property>
+    </class>
+</hibernate-mapping>

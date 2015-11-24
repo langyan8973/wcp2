@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   功能:组件定义,作者:FarmCode代码工程,日期:20141204174206
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+  <!-- 组件定义Dao实现 -->
+  <bean id="farm_portal_ComponentDef_DaoId"
+    class="com.farm.portal.dao.impl.ComponentdefDaoImpl">
+    <property name="sessionFatory">
+      <ref bean="sessionFactory" />
+    </property>
+    <property name="sqlTools">
+      <bean  class="com.farm.core.sql.utils.HibernateSQLTools">
+        <constructor-arg>
+           <ref bean="sessionFactory" />
+        </constructor-arg>
+        <constructor-arg>
+          <bean class="com.farm.portal.domain.Componentdef"></bean>
+        </constructor-arg>
+      </bean>
+    </property>
+  </bean>
+  <!-- Server配置文件注入   <property name="componentdefDao"><ref bean="farm_portal_ComponentDef_DaoId" /></property>-->
+  <!-- Server实现类变量  private ComponentdefDaoInter  componentdefDao;-->
+</beans>

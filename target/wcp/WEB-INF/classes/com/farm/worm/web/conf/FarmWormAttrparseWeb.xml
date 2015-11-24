@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--
+		将该脚本加入struts2配置文件中 任务属性<include
+		file="com/farm/worm/web/conf/FarmWormAttrparseWeb.xml"></include>
+	-->
+<struts>
+	<!-- 任务属性 -->
+	<package name="FarmWormAttrparse_Ajax_code" extends="json-default">
+		<!-- 任务属性查询 -->
+		<action name="FarmWormAttrparsequeryAll" method="queryall"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 任务属性增加 -->
+		<action name="FarmWormAttrparseaddCommit" method="addSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 任务属性删除 -->
+		<action name="FarmWormAttrparsedeleteCommit" method="delSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 任务属性修改 -->
+		<action name="FarmWormAttrparseeditCommit" method="editSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmWormAttrparse_Jsp_code" extends="struts-default">
+		<!-- 任务属性详细【修改、浏览】 -->
+		<action name="FarmWormAttrparseshow" method="view"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result>/PLUGIN/worm/pFarmWormAttrparseEntity.jsp</result>
+		</action>
+		<!-- 维护项目任务属性页面 -->
+		<action name="FarmWormAttrparse_ACTION_ALERT" method="forSend"
+			class="com.farm.worm.web.action.ActionFarmWormAttrparseQuery">
+			<result>/PLUGIN/worm/pFarmWormAttrparseGrid.jsp</result>
+		</action>
+	</package>
+</struts>

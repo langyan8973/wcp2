@@ -1,0 +1,89 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      下载项目<include file="com/farm/worm/web/conf/FarmWormProjectWeb.xml"></include> -->
+<struts>
+	<!-- 下载项目 -->
+	<package name="FarmWormProject_Ajax_code" extends="json-default">
+		<!-- 下载项目查询 -->
+		<action name="FarmWormProjectqueryAll" method="queryall"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 下载项目增加 -->
+		<action name="FarmWormProjectaddCommit" method="addSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 下载项目删除 -->
+		<action name="FarmWormProjectdeleteCommit" method="delSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 下载项目修改 -->
+		<action name="FarmWormProjecteditCommit" method="editSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		
+		<!-- 初始化任务 -->
+		<action name="FarmWormProjectUrlInit" method="initPro"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 开始下载 -->
+		<action name="FarmWormProjectStart" method="startPro"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 停止下载 -->
+		<action name="FarmWormProjectWait" method="waitPro"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 初始化项目状态 -->
+		<action name="FarmWormProjectInit" method="intiPro"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 验证参数 -->
+		<action name="FarmWormProjectCheckPara" method="checkPara"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 获取当前状态 -->
+		<action name="FarmWormProjectLoadStat" method="loadStat"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	</package>
+	<package name="FarmWormProject_Jsp_code" extends="struts-default">
+		<!-- 下载项目详细【修改、浏览】 -->
+		<action name="FarmWormProjectshow" method="view"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result>/PLUGIN/worm/pFarmWormProjectEntity.jsp</result>
+		</action>
+		<!-- 项目配置页面 -->
+		<action name="FarmWormProjectSeting" method="view"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result>/PLUGIN/worm/pFarmWormProjectSeting.jsp</result>
+		</action>
+		<!-- html加载下载项目控制台 -->
+		<action name="FarmWormProject_ACTION_CONSOLE">
+			<result>/PLUGIN/worm/pFarmWormProjectLayout.jsp</result>
+		</action>
+		<!-- ajax加载下载项目选择页面 -->
+		<action name="FarmWormProject_ACTION_ALERT" >
+			<result>/PLUGIN/worm/pFarmWormProjectGrid.jsp</result>
+		</action>
+		<!-- 项目运行时页面-->
+		<action name="FarmWormProject_ACTION_Runtime" method="runtime"
+			class="com.farm.worm.web.action.ActionFarmWormProjectQuery">
+			<result>/PLUGIN/worm/pFarmWormRuntime.jsp</result>
+		</action>
+	</package>
+</struts>

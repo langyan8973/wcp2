@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="wcpWebSite_Jsp_code" extends="struts-default">
+		<!-- 请求创建站点页面 -->
+		<action name="webSiteshowPage" method="showPage"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result>/UI-WEB/website/showCreatePage.jsp</result>
+		</action>
+		<!-- 请求修改站点页面 -->
+		<action name="webSiteEditPage" method="showEditPage"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result>/UI-WEB/website/showEditPage.jsp</result>
+		</action>
+		<!-- 提交站点创建请求 -->
+		<action name="webSiteCreatSiteCommit" method="creatSiteCommit"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result type="redirect">index/FPwebSiteVisitSite.htm?id=${id}</result>
+			<result name="INPUT">/UI-WEB/website/showCreatePage.jsp</result>
+		</action>
+		<!-- 提交站点更新请求 -->
+		<action name="webSiteEditSiteCommit" method="editSiteCommit"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result>/UI-WEB/website/visitSite.jsp</result>
+			<result name="INPUT">/UI-WEB/website/showEditPage.jsp</result>
+		</action>
+		<!-- 访问站点 -->
+		<action name="FPwebSiteVisitSite" method="visitSite"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result>/UI-WEB/website/visitSite.jsp</result>
+			<result name="ERROR">/UI-WEB/authNo.jsp</result>
+		</action>
+		<!-- 站点首页 -->
+		<action name="FPwebSiteIndex" method="visitSite"
+			class="com.farm.wcp.website.web.action.ActionIndex">
+			<result>/UI-WEB/website/siteIndex.jsp</result>
+			<result name="ERROR">/UI-WEB/authNo.jsp</result>
+		</action>
+	</package>
+	<package name="wcpWebSite_Json_code" extends="json-default">
+		<!-- ajax列表请求 -->
+	</package>
+</struts>

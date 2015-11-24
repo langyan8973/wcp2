@@ -1,0 +1,55 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="platformWebJsp" extends="struts-default">
+		<!-- 加载全部菜单-->
+		<action name="loadAllUrl" method="loadMenu"
+			class="com.farm.web.action.FarmAction">
+			<result>/UI-BASE/PLAT/main.jsp</result>
+		</action>
+		<!-- 用户登录页面-->
+		<action name="ALONEFRAME_LOGIN_PAGE" method="loginPage"
+			class="com.farm.web.action.FarmAction">
+			<result>/UI-BASE/PLAT/login.jsp</result>
+		</action>
+		<!-- 用户登录-->
+		<action name="ALONEFRAME_LOGIN_COMMIT" method="loginCommit"
+			class="com.farm.web.action.FarmAction">
+			<result type="redirect">admin/ALONEFRAME_INDEX.do</result>
+			<result name="FAIL">/UI-BASE/PLAT/login.jsp</result>
+		</action>
+		<!-- 后台首页-->
+		<action name="ALONEFRAME_INDEX" method="index"
+			class="com.farm.web.action.FarmAction">
+			<result>/UI-BASE/PLAT/frame.jsp</result>
+			<result name="FAIL">/UI-BASE/PLAT/login.jsp</result>
+		</action>
+		<!-- 获得菜单-->
+		<action name="ALONEACTION_SUBORDINATION_MENU" method="findMenu"
+			class="com.farm.web.action.FarmAction">
+			<result>/UI-BASE/PLAT/menu.jsp</result>
+		</action>
+		<!-- 用户退出-->
+		<action name="ALONEFRAME_LOGOUT_COMMIT" method="logoutCommit"
+			class="com.farm.web.action.FarmAction">
+			<result>/UI-BASE/PLAT/login.jsp</result>
+		</action>
+	</package>
+	<package name="platformWebAjax" extends="json-default">
+		<!-- 获得菜单-->
+		<action name="ALONEAJAX_SUBORDINATION_MENU" method="findMenu"
+			class="com.farm.web.action.FarmAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="popWebAjax" extends="json-default">
+		<!-- 获得系统可用树 -->
+		<action name="findAllUrlTree" method="findAjaxUrlTree"
+			class="com.farm.web.action.ActionStrutsServer">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+	</package>
+</struts>

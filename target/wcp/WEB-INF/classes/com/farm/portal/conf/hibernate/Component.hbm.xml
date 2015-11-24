@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+   功能:组件库,作者:FarmCode代码工程,日期:20141119144919
+-->
+<hibernate-mapping>
+    <class name="com.farm.portal.domain.Component" table="farm_portal_component">
+        <id name="id" 
+            type="java.lang.String">
+            <column name="ID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="viewimgid" 
+            type="java.lang.String">
+            <column name="VIEWIMGID" length="32"   />
+        </property>
+        <property name="context" 
+            type="java.lang.String">
+            <column name="CONTEXT" length="512"   />
+        </property>
+        <property name="url" 
+            type="java.lang.String">
+            <column name="URL" length="512"   />
+        </property>
+        <property name="iconclass" 
+            type="java.lang.String">
+            <column name="ICONCLASS" length="128"   />
+        </property>
+        <property name="pcontent" 
+            type="java.lang.String">
+            <column name="PCONTENT" length="128"   />
+        </property>
+        <property name="title" 
+            type="java.lang.String">
+            <column name="TITLE" length="128" not-null="true"  />
+        </property>
+        <property name="pstate" 
+            type="java.lang.String">
+            <column name="PSTATE" length="2" not-null="true"  />
+        </property>
+        <property name="euser" 
+            type="java.lang.String">
+            <column name="EUSER" length="32" not-null="true"  />
+        </property>
+        <property name="eusername" 
+            type="java.lang.String">
+            <column name="EUSERNAME" length="64" not-null="true"  />
+        </property>
+        <property name="cusername" 
+            type="java.lang.String">
+            <column name="CUSERNAME" length="64" not-null="true"  />
+        </property>
+        <property name="cuser" 
+            type="java.lang.String">
+            <column name="CUSER" length="32" not-null="true"  />
+        </property>
+        <property name="ctime" 
+            type="java.lang.String">
+            <column name="CTIME" length="16" not-null="true"  />
+        </property>
+        <property name="etime" 
+            type="java.lang.String">
+            <column name="ETIME" length="16" not-null="true"  />
+        </property>
+    </class>
+</hibernate-mapping>

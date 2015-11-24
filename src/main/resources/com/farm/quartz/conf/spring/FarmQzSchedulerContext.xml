@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--将该脚本加入spring配置文件中      计划任务管理<import resource="classpath:com/farm/quartz/config/FarmQzSchedulerContext.xml"></import> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 计划任务管理Dao实现 -->
+	<bean id="farm_qz_schedulerDaoId"
+		class="com.farm.quartz.dao.FarmQzSchedulerDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="FarmQzScheduler_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="FarmQzScheduler_object" class="com.farm.quartz.domain.FarmQzScheduler"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 任务定义Dao实现 -->
+	<bean id="farm_qz_taskDaoId"
+		class="com.farm.quartz.dao.FarmQzTaskDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="FarmQzTask_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="FarmQzTask_object" class="com.farm.quartz.domain.FarmQzTask"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 触发器定义Dao实现 -->
+	<bean id="farm_qz_triggerDaoId"
+		class="com.farm.quartz.dao.FarmQzTriggerDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean id="FarmQzTrigger_sqlTool" class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean id="FarmQzTrigger_object" class="com.farm.quartz.domain.FarmQzTrigger"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="farm_qz_schedulerServerId"
+		class="com.farm.quartz.server.FarmQzSchedulerManagerImpl">
+		<property name="farmQzSchedulerDao">
+			<ref bean="farm_qz_schedulerDaoId" />
+		</property>
+		<property name="farmQzTaskDao">
+			<ref bean="farm_qz_taskDaoId" />
+		</property>
+		<property name="farmQzTriggerDao">
+			<ref bean="farm_qz_triggerDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="farm_qz_schedulerProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.quartz.server.FarmQzSchedulerManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="farm_qz_schedulerServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYfarm_qz_schedulerTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYfarm_qz_schedulerTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

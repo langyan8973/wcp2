@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      下载内容<include file="com/farm/worm/web/conf/FarmWormDocattrWeb.xml"></include> -->
+<struts>
+	<!-- 下载内容 -->
+	<package name="FarmWormDocattr_Ajax_code" extends="json-default">
+		<!-- 下载内容查询 -->
+		<action name="FarmWormDocattrqueryAll" method="queryall"
+			class="com.farm.worm.web.action.ActionFarmWormDocattrQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 下载内容增加 -->
+		<action name="FarmWormDocattraddCommit" method="addSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormDocattrQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 下载内容删除 -->
+		<action name="FarmWormDocattrdeleteCommit" method="delSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormDocattrQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 下载内容修改 -->
+		<action name="FarmWormDocattreditCommit" method="editSubmit"
+			class="com.farm.worm.web.action.ActionFarmWormDocattrQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmWormDocattr_Jsp_code" extends="struts-default">
+		<!-- 下载内容详细【修改、浏览】 -->
+		<action name="FarmWormDocattrshow" method="view"
+			class="com.farm.worm.web.action.ActionFarmWormDocattrQuery">
+			<result>/PLUGIN/worm/pFarmWormDocattrEntity.jsp</result>
+		</action>
+		<!-- html加载下载内容控制台 -->
+		<action name="FarmWormDocattr_ACTION_CONSOLE">
+			<result>/PLUGIN/worm/pFarmWormDocattrLayout.jsp</result>
+		</action>
+		<!-- ajax加载下载内容选择页面 -->
+		<action name="FarmWormDocattr_ACTION_ALERT" >
+			<result>/PLUGIN/worm/pFarmWormDocattrGrid.jsp</result>
+		</action>
+	</package>
+</struts>

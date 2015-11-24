@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- 
+   功能:任务描述,作者:FarmCode代码工程,日期:20141119144919
+-->
+<struts>
+	<package name="FarmtaskUserAjax" extends="json-default">
+		<!-- 发送任务 -->
+		<action name="FarmPlanTaskSendUser" method="sendUser"
+			class="com.farm.plan.action.TaskUserAction">
+			<result type="json">
+			</result>
+		</action>
+	</package>
+	<package name="FarmtaskUserJsp" extends="struts-default">
+	</package>
+</struts>

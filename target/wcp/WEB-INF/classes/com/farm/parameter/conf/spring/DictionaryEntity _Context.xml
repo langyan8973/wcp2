@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Dao实现 -->
+	<bean id="ALONE_DictionaryEntity_DAO"
+		class="com.farm.parameter.dao.impl.DictionaryEntityDao">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="ALONE_DictionaryEntity_SERVER"
+		class="com.farm.parameter.service.impl.DictionaryEntityManagerImpl">
+		<property name="dictionaryentityDao">
+			<ref bean="ALONE_DictionaryEntity_DAO" />
+		</property>
+		<property name="dictionarytypeDao">
+			<ref bean="ALONE_DictionaryType_DAO" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="ALONE_DictionaryEntity_DAO_PROXY"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.parameter.service.DictionaryEntityManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="ALONE_DictionaryEntity_SERVER" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="DictionaryEntityTransactionAttributeSource" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="DictionaryEntityTransactionAttributeSource"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

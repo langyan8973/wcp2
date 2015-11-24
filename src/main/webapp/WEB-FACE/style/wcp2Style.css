@@ -1,0 +1,46 @@
+.userbox {
+	background-color: #FCFCFC;
+}
+
+body {
+	background-color: #4E4E4E;
+}
+
+.containerbox {
+	background-color: #ffffff;
+	padding-top: 4px;
+	padding-bottom: 50px;
+}
+
+.errorMsgClass {
+	color: red;
+}
+
+.alertMsgClass {
+	color: red;
+}
+
+a {
+	cursor: pointer;
+}
+
+.wcp_columnTitle {
+	margin-top:4px;
+	font-size:18px;
+}
+
+.navbar-title{
+	color:white;
+}
+.navbar-title{
+	font-size:22px;
+	margin-top:11px;
+	margin-bottom:11px;
+}
+@media (min-width: 768px) {
+  .navbar-title {
+    float:left;
+    margin-right: 103px;
+    margin-left: 103px;
+  }
+}

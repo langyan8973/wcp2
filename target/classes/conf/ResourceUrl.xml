@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--本文件中配置：系统外部链接-->
+<struts>
+	<package name="URL-Resource" extends="struts-default">
+		<!-- 文件系统garner的地址
+		<action name="garner">
+			<result type="redirect">http://127.0.0.1:8080/garner</result>
+		</action>
+		<action name="garner-test">
+			<result type="redirect">http://127.0.0.1:8080/garner/PLUGIN/test/upload.jsp</result>
+		</action> -->
+	</package>
+</struts>

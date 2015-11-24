@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   功能:用户个性化参数,作者:FarmCode代码工程,日期:20141204174206
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+  <!-- 用户个性化参数Dao实现 -->
+  <bean id="farm_parameter_aloneParameterLocal_DaoId"
+    class="com.farm.parameter.dao.impl.AloneparameterlocalDaoImpl">
+    <property name="sessionFatory">
+      <ref bean="sessionFactory" />
+    </property>
+    <property name="sqlTools">
+      <bean  class="com.farm.core.sql.utils.HibernateSQLTools">
+        <constructor-arg>
+           <ref bean="sessionFactory" />
+        </constructor-arg>
+        <constructor-arg>
+          <bean class="com.farm.parameter.domain.Aloneparameterlocal"></bean>
+        </constructor-arg>
+      </bean>
+    </property>
+  </bean>
+  <!-- Server配置文件注入   -->
+  <!-- Server实现类变量  -->
+</beans>

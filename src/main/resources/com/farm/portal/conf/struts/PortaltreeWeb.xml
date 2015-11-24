@@ -1,0 +1,48 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <!-- 门户配置管理 -->
+  <package name="FarmPortalPortaltreeAjax" extends="json-default">
+    <!-- 门户配置查询 -->
+    <action name="FarmPortalPortaltreeQuery" method="queryall"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result type="json">
+        <param name="root">jsonResult</param>
+      </result>
+    </action>
+    <!-- 门户配置增加 -->
+    <action name="FarmPortalPortaltreeAddCommit" method="addSubmit"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result type="json"></result>
+    </action>
+    <!-- 门户配置删除 -->
+    <action name="FarmPortalPortaltreeDeleteCommit" method="delSubmit"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result type="json"></result>
+    </action>
+    <!-- 门户配置修改 -->
+    <action name="FarmPortalPortaltreeEditCommit" method="editSubmit"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result type="json"></result>
+    </action>
+    <!-- 加载树节点 -->
+    <action name="FarmPortalPortaltreeloadTree" method="loadTreeNode"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result type="json">
+        <param name="root">treeNodes</param>
+      </result>
+    </action>
+  </package>
+  <package name="FarmPortalPortaltreeJsp" extends="struts-default">
+    <!-- 门户配置表单（浏览、新增、修改） -->
+    <action name="FarmPortalPortaltreeShow" method="view"
+      class="com.farm.portal.action.PortaltreeAction">
+      <result>/PLUGIN/portal/PortaltreeForm.jsp</result>
+    </action>
+    <!-- 门户配置管理首页 -->
+    <action name="FarmPortalPortaltreeConsole">
+      <result>/PLUGIN/portal/PortaltreeResult.jsp</result>
+    </action>
+  </package>
+</struts>

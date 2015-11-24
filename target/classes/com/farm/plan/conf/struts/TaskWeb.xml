@@ -1,0 +1,83 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- 
+   功能:计划任务,作者:FarmCode代码工程,日期:20141119144919
+-->
+<struts>
+	<package name="FarmPlanTaskAjax" extends="json-default">
+		<!-- 计划任务查询 -->
+		<action name="FarmPlanTaskQuery" method="queryall"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 计划任务增加 -->
+		<action name="FarmPlanTaskaddCommit" method="addSubmit"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务删除 -->
+		<action name="FarmPlanTaskdeleteCommit" method="delSubmit"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务修改 -->
+		<action name="FarmPlanTaskeditCommit" method="editSubmit"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务完成 -->
+		<action name="FarmPlanTaskCompleteCommit" method="completeSubmit"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务确认完成 -->
+		<action name="FarmPlanTaskStarOK" method="starOK"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务确认打回重做 -->
+		<action name="FarmPlanTaskStarBack" method="starBack"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务挂起 -->
+		<action name="FarmPlanTaskSuspend" method="suspend"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+		<!-- 计划任务取消挂起 -->
+		<action name="FarmPlanTaskUnSuspend" method="unSuspend"
+			class="com.farm.plan.action.TaskAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmPlanTaskJsp" extends="struts-default">
+		<!-- 计划任务表单（浏览、新增、修改） -->
+		<action name="FarmPlanTaskShow" method="view"
+			class="com.farm.plan.action.TaskAction">
+			<result>/PLUGIN/plan/TaskForm.jsp</result>
+		</action>
+		<!-- 计划任务表单（新增） -->
+		<action name="FarmPlanTaskAddShow" method="viewAdd"
+			class="com.farm.plan.action.TaskAction">
+			<result>/PLUGIN/plan/TaskFormAdd.jsp</result>
+		</action>
+		<!-- 计划任务管理首页 -->
+		<action name="FarmPlanTaskConsole">
+			<result>/PLUGIN/plan/TaskResult.jsp</result>
+		</action>
+		<!--选择tag页面-->
+		<action name="FarmPlanTagsPage" method="tagsdd"
+			class="com.farm.plan.action.TaskAction">
+			<result>/PLUGIN/plan/TagsPage.jsp</result>
+		</action>
+		<!--评价确认页面-->
+		<action name="FarmPlanStarPage" method="taskStar"
+			class="com.farm.plan.action.TaskAction">
+			<result>/PLUGIN/plan/StarForm.jsp</result>
+		</action>
+	</package>
+</struts>

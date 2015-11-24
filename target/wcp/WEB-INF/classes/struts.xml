@@ -1,0 +1,17 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="org.macpro.alone.web.config.message">
+	</constant>
+	<constant name="struts.action.extension" value="do,htm"></constant>
+	<constant name="struts.locale" value="zh_CN"></constant>
+	<constant name="struts.i18n.reload" value="false"></constant>
+	<constant name="struts.multipart.maxSize" value="52428800"></constant>
+	<package name="person" extends="struts-default" namespace="/person">
+	</package>
+	<!-- 框架-->
+	<include file="conf/PlatFormWeb.xml"></include>
+	<!-- 外部链接-->
+	<include file="conf/ResourceUrl.xml"></include>
+</struts>

@@ -1,0 +1,37 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--
+		将该脚本加入struts2配置文件中 知识管理<include
+		file="com/farm/wcp/console/web/conf/FarmDocWeb.xml"></include>
+	-->
+<struts>
+	<!-- 知识管理 -->
+	<package name="WCPDoc_Ajax_code" extends="json-default">
+		<!-- 知识管理查询 -->
+		<action name="WcpDocqueryAll" method="queryall"
+			class="com.farm.wcp.console.web.action.ActionFarmDocQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 重做全部知识索引 -->
+		<action name="WcpReIndex" method="reIndex"
+			class="com.farm.wcp.console.web.action.ActionFarmDocQuery">
+			<result type="json">
+			</result>
+		</action>
+		<!-- 查询当前索引状态 -->
+		<action name="WcpLoadIndexSta" method="loadIndexStatr"
+			class="com.farm.wcp.console.web.action.ActionFarmDocQuery">
+			<result type="json">
+			</result>
+		</action>
+	</package>
+	<package name="WCPDoc_Jsp_code" extends="struts-default">
+		<!-- html加载知识管理控制台 -->
+		<action name="WcpDoc_ACTION_CONSOLE">
+			<result>/UI-CONSOLE/KnowManager/pFarmDocLayout.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,12 @@
+项目编码
+config.filter.encode=utf-8
+项目名称
+config.sys.title=\u7BA1\u7406\u63A7\u5236\u53F0
+公司名称
+config.company.title=\u7BA1\u7406\u63A7\u5236\u53F0
+是否对用户做权限验证（URL的验证）
+config.auth.check.url=false
+系统是否允许多个中华登录
+config.auth.multi.user=false
+配置文件自动检索的路径：多个路径用逗号分隔
+config.plugin.dir=com.farm.plugin

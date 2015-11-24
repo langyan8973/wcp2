@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		将该脚本加入spring配置文件中 文档管理<import
+		resource="classpath:com/farm/doc/config/FarmDocContext.xml"></import>
+	-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Server实现 -->
+	<bean id="wcp_knowServerId" class="com.farm.wcp.know.server.WcpKnowManagerImpl">
+		<property name="DocServer">
+			<ref bean="farm_docServerId" />
+		</property>
+		<property name="fileServer">
+			<ref bean="farm_docFileProxyId" />
+		</property>
+		<property name="farmDocOperate">
+			<ref bean="farm_DocOperateId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="wcp_KnowProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.wcp.know.server.WcpKnowManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="wcp_knowServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYWcp_knowTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYWcp_knowTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

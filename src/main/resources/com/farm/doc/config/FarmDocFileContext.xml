@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		将该脚本加入spring配置文件中 文档管理<import
+		resource="classpath:com/farm/doc/config/FarmDocContext.xml"></import>
+	-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- Server实现 -->
+	<bean id="farm_docFileServerId" class="com.farm.doc.server.FarmFileManagerImpl">
+		<property name="farmDocfileDao">
+			<ref bean="farm_docfileDaoId" />
+		</property>
+		<property name="farmRfDoctextfileDao">
+			<ref bean="farm_rf_doctextfileDaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="farm_docFileProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.doc.server.FarmFileManagerInter
+				</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="farm_docFileServerId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="KEYfarm_docFileTRANCACTION" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="KEYfarm_docFileTRANCACTION"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

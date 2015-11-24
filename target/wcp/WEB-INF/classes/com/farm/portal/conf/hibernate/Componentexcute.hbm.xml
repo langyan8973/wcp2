@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+   功能:用户组件实例,作者:FarmCode代码工程,日期:20141204174206
+-->
+<hibernate-mapping>
+    <class name="com.farm.portal.domain.Componentexcute" table="farm_portal_componentexcute">
+        <id name="id" 
+            type="java.lang.String">
+            <column name="ID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="portaldefid" 
+            type="java.lang.String">
+            <column name="PORTALDEFID" length="32" not-null="true"  />
+        </property>
+        <property name="sort" 
+            type="java.lang.Integer">
+            <column name="SORT"  not-null="true"  />
+        </property>
+        <property name="collapsis" 
+            type="java.lang.String">
+            <column name="COLLAPSIS" length="32" not-null="true"  />
+        </property>
+        <property name="componentdefid" 
+            type="java.lang.String">
+            <column name="COMPONENTDEFID" length="32" not-null="true"  />
+        </property>
+        <property name="closeis" 
+            type="java.lang.String">
+            <column name="CLOSEIS" length="32" not-null="true"  />
+        </property>
+        <property name="portalexcuteid" 
+            type="java.lang.String">
+            <column name="PORTALEXCUTEID" length="32" not-null="true"  />
+        </property>
+    </class>
+</hibernate-mapping>

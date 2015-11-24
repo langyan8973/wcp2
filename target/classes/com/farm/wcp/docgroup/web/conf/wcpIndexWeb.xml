@@ -1,0 +1,192 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="wcpDocGroup_Jsp_code" extends="struts-default">
+		<!-- 进入小组首页 -->
+		<action name="FPDocGroupMng" method="index"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupManage.jsp</result>
+		</action>
+		<!-- 进入小组编辑页面 -->
+		<action name="DocGroupEdit" method="edit"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/editGroup.jsp</result>
+		</action>
+		<!-- 增加小组 -->
+		<action name="DocGroupAddCommit" method="addCommit"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="redirect">index/FPGroupInfo.htm?id=${id}</result>
+			<result name="NOPOP" type="redirect">index/FPwcp.htm</result>
+			<result name="ERRORS">/UI-WEB/docgroup/editGroup.jsp</result>
+		</action>
+		<!-- 修改小组 -->
+		<action name="DocGroupEditCommit" method="editCommit"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="redirect">index/FPGroupInfo.htm?id=${id}</result>
+			<result name="ERRORS">/UI-WEB/docgroup/editGroup.jsp</result>
+		</action>
+		<!-- 加载我的小组列表 -->
+		<action name="loadMyDocGroup" method="loadGroups"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/MyGroup.jsp</result>
+		</action>
+		<!-- 加载我的小组列表简易版 -->
+		<action name="loadMyDocGroupMin" method="loadGroups"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/MyGroupMin.jsp</result>
+		</action>
+		<!-- 小组详情 -->
+		<action name="FPGroupInfo" method="groupShow"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/group.jsp</result>
+		</action>
+		<!-- 加入小组 -->
+		<action name="joinGroup" method="groupjoin"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupManage.jsp</result>
+			<result name="FORM">/UI-WEB/docgroup/joinCheckForm.jsp</result>
+			<result name="error">/UI-WEB/docgroup/groupManage.jsp</result>
+		</action>
+		<!-- 退出小组 -->
+		<action name="leaveGroup" method="leaveGroup"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupManage.jsp</result>
+		</action>
+		<!-- 进入小组管理界面 -->
+		<action name="groupAdministratorConsole" method="groupAdministratorConsole"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupAdministratorConsole.jsp</result>
+		</action>
+		<!-- 管理员管理页面 -->
+		<action name="GroupAdministratorMng" method="GroupAdministratorMng"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/AdministratorMng.jsp</result>
+		</action>
+		<!-- 小组成员管理页面 -->
+		<action name="GroupUserMng" method="GroupUserMng"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/UserMng.jsp</result>
+		</action>
+		<!-- 申请成员管理页面 -->
+		<action name="GroupApplyMng" method="GroupApplyMng"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/ApplyrMng.jsp</result>
+		</action>
+		<!-- 加载小组的最新文档 -->
+		<action name="FPLoadGroupNewDoc" method="loadGroupNewDoc"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/docsMin.jsp</result>
+		</action>
+		<!-- 加载小组的最热文档 -->
+		<action name="FPLoadGroupHotDoc" method="loadGroupHotDoc"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/docsMin.jsp</result>
+		</action>
+		<!-- 加载小组的最优文档 -->
+		<action name="FPLoadGroupGoodDoc" method="loadGroupGoodDoc"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/docsMin.jsp</result>
+		</action>
+		<!-- 加载小组待改善文档 -->
+		<action name="FPLoadGroupBadDoc" method="loadGroupBadDoc"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/docsMin.jsp</result>
+		</action>
+		<!-- 加载小组首页 -->
+		<action name="FPLoadMygroupHome" method="loadGroupHome"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupHome.jsp</result>
+		</action>
+		<!-- 修改小组首页 -->
+		<action name="FLEditGroupHome" method="editGroupHome"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/editHomePage.jsp</result>
+		</action>
+		<!-- 提交小组首页修改 -->
+		<action name="FLEditGroupHomeCommit" method="editGroupHomeCommit"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result name="error">/UI-WEB/docgroup/editHomePage.jsp</result>
+			<result type="redirect">index/FPGroupInfo.htm?id=${id}</result>
+		</action>
+		<!-- 首页我的小组动态 -->
+		<action name="LoadHomeMyGroup" method="loadHomeMyGroup"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/HomeMyGroup.jsp</result>
+		</action>
+		<!-- 加载某人的小组列表 -->
+		<action name="FPloadUserGroups" method="loadUserGroup"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/UserGroups.jsp</result>
+		</action>
+		<!-- 首页公共小组 -->
+		<action name="FPLoadHomePubGroup" method="loadHomePubGroup"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/commons/impl/HomePubGroup.jsp</result>
+		</action>
+		<!-- 查询我的小组文档 -->
+		<action name="queryMygroupDoc" method="queryGroupDoc"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result>/UI-WEB/docgroup/groupSearchMyDocs.jsp</result>
+		</action>
+	</package>
+	<package name="wcpDocGroup_Json_code" extends="json-default">
+		<!-- 判断小组是否还有别的管理员 -->
+		<action name="GroupIsHaveAdministrator" method="haveAdministratorIs"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 同意加入申请-->
+		<action name="GroupAgreeApply" method="groupAgreeApply"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 拒绝加入申请 -->
+		<action name="GroupRefuseApply" method="groupRefuseApply"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+
+		<!-- 取消小组管理员权限 -->
+		<action name="GroupWipeAdmin" method="groupWipeAdmin"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 将用户退出小组 -->
+		<action name="GroupQuit" method="groupQuit"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+
+		<!-- 设置用户为管理员 -->
+		<action name="GroupSetAdmin" method="groupSetAdmin"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 赋予用户小组编辑权限 -->
+		<action name="GroupSetEditor" method="groupSetEditor"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 取消用户小组编辑权限 -->
+		<action name="GroupWipeEditor" method="groupWipeEditor"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 首页显示小组 -->
+		<action name="GroupHomeShow" method="groupHomeShow"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 首页隐藏小组 -->
+		<action name="GroupHomeHide" method="groupHomeHide"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 我的小组中某个小组排序上移 -->
+		<action name="GroupSortUp" method="groupSortUp"
+			class="com.farm.wcp.docgroup.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+	</package>
+</struts>

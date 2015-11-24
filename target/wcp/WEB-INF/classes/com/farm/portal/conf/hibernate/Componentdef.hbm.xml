@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+   功能:组件定义,作者:FarmCode代码工程,日期:20141204174206
+-->
+<hibernate-mapping>
+    <class name="com.farm.portal.domain.Componentdef" table="farm_portal_componentdef">
+        <id name="id" 
+            type="java.lang.String">
+            <column name="ID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <property name="closable" 
+            type="java.lang.String">
+            <column name="CLOSABLE" length="2" not-null="true"  />
+        </property>
+        <property name="collapsible" 
+            type="java.lang.String">
+            <column name="COLLAPSIBLE" length="2" not-null="true"  />
+        </property>
+        <property name="width" 
+            type="java.lang.Integer">
+            <column name="WIDTH"    />
+        </property>
+        <property name="heitgh" 
+            type="java.lang.Integer">
+            <column name="HEITGH"    />
+        </property>
+        <property name="componentid" 
+            type="java.lang.String">
+            <column name="COMPONENTID" length="32" not-null="true"  />
+        </property>
+        <property name="pcontent" 
+            type="java.lang.String">
+            <column name="PCONTENT" length="128"   />
+        </property>
+        <property name="pstate" 
+            type="java.lang.String">
+            <column name="PSTATE" length="2" not-null="true"  />
+        </property>
+        <property name="euser" 
+            type="java.lang.String">
+            <column name="EUSER" length="32" not-null="true"  />
+        </property>
+        <property name="eusername" 
+            type="java.lang.String">
+            <column name="EUSERNAME" length="64" not-null="true"  />
+        </property>
+        <property name="cuser" 
+            type="java.lang.String">
+            <column name="CUSER" length="32" not-null="true"  />
+        </property>
+        <property name="cusername" 
+            type="java.lang.String">
+            <column name="CUSERNAME" length="64" not-null="true"  />
+        </property>
+        <property name="etime" 
+            type="java.lang.String">
+            <column name="ETIME" length="16" not-null="true"  />
+        </property>
+        <property name="ctime" 
+            type="java.lang.String">
+            <column name="CTIME" length="16" not-null="true"  />
+        </property>
+        <property name="openable" 
+            type="java.lang.String">
+            <column name="OPENABLE" length="2" not-null="true"  />
+        </property>
+    </class>
+</hibernate-mapping>

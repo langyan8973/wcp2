@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--将该脚本加入struts2配置文件中      触发器定义<include file="com/farm/quartz/web/conf/FarmQzTriggerWeb.xml"></include> -->
+<struts>
+	<!-- 触发器定义 -->
+	<package name="FarmQzTrigger_Ajax_code" extends="json-default">
+		<!-- 触发器定义查询 -->
+		<action name="FarmQzTriggerqueryAll" method="queryall"
+			class="com.farm.quartz.web.action.ActionFarmQzTriggerQuery">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 触发器定义增加 -->
+		<action name="FarmQzTriggeraddCommit" method="addSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTriggerQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 触发器定义删除 -->
+		<action name="FarmQzTriggerdeleteCommit" method="delSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTriggerQuery">
+			<result type="json"></result>
+		</action>
+		<!-- 触发器定义修改 -->
+		<action name="FarmQzTriggereditCommit" method="editSubmit"
+			class="com.farm.quartz.web.action.ActionFarmQzTriggerQuery">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmQzTrigger_Jsp_code" extends="struts-default">
+		<!-- 触发器定义详细【修改、浏览】 -->
+		<action name="FarmQzTriggershow" method="view"
+			class="com.farm.quartz.web.action.ActionFarmQzTriggerQuery">
+			<result>/PLUGIN/quartz/pFarmQzTriggerEntity.jsp</result>
+		</action>
+		<!-- html加载触发器定义控制台 -->
+		<action name="FarmQzTrigger_ACTION_CONSOLE">
+			<result>/PLUGIN/quartz/pFarmQzTriggerLayout.jsp</result>
+		</action>
+		<!-- ajax加载触发器定义选择页面 -->
+		<action name="FarmQzTrigger_ACTION_ALERT" >
+			<result>/PLUGIN/quartz/pFarmQzTriggerGrid.jsp</result>
+		</action>
+	</package>
+</struts>

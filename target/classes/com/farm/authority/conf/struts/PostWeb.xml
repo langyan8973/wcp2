@@ -1,0 +1,61 @@
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+  "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!-- 
+   功能:岗位,作者:FarmCode代码工程,日期:20141124152033
+-->
+<struts>
+	<package name="FarmAuthorityPostAjax" extends="json-default">
+		<!-- 岗位查询 -->
+		<action name="FarmAuthorityPostQuery" method="queryall"
+			class="com.farm.authority.action.PostAction">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		<!-- 岗位增加 -->
+		<action name="FarmAuthorityPostaddCommit" method="addSubmit"
+			class="com.farm.authority.action.PostAction">
+			<result type="json"></result>
+		</action>
+		<!-- 岗位删除 -->
+		<action name="FarmAuthorityPostdeleteCommit" method="delSubmit"
+			class="com.farm.authority.action.PostAction">
+			<result type="json"></result>
+		</action>
+		<!-- 岗位修改 -->
+		<action name="FarmAuthorityPosteditCommit" method="editSubmit"
+			class="com.farm.authority.action.PostAction">
+			<result type="json"></result>
+		</action>
+		<!-- 一次加载全部树URL并标注角色选中状态 -->
+		<action name="ALONEMENU_RULEGROUP_TREENODE" method="postActionsTreeInit"
+			class="com.farm.authority.action.PostAction">
+			<result type="json">
+				<param name="root">treeNodes</param>
+			</result>
+		</action>
+		<!-- 设置角色权限树 -->
+		<action name="ALONEROLEGROUP_SYSBASE_SETTREE" method="roleGroupSetTree"
+			class="com.farm.authority.action.PostAction">
+			<result type="json"></result>
+		</action>
+	</package>
+	<package name="FarmAuthorityPostJsp" extends="struts-default">
+		<!-- 岗位表单（浏览、新增、修改） -->
+		<action name="FarmAuthorityPostShow" method="view"
+			class="com.farm.authority.action.PostAction">
+			<result>/PLUGIN/authority/PostForm.jsp</result>
+		</action>
+		<!-- 岗位管理首页 -->
+		<action name="FarmAuthorityPostConsole" method="forSend"
+			class="com.farm.authority.action.PostAction">
+			<result>/PLUGIN/authority/PostResult.jsp</result>
+		</action>
+		<!-- 设置岗位权限页面 -->
+		<action name="FarmAuthorityPostActions" method="forSend"
+			class="com.farm.authority.action.PostAction">
+			<result>/PLUGIN/authority/PostActionsSeting.jsp</result>
+		</action>
+	</package>
+</struts>

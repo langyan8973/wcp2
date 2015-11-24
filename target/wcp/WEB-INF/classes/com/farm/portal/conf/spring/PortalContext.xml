@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--门户配置配置文件中      -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- 门户配置Dao实现 -->
+	<bean id="farm_portal_PortalTree_DaoId" class="com.farm.portal.dao.impl.PortaltreeDaoImpl">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean class="com.farm.portal.domain.Portaltree"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 门户定义Dao实现 -->
+	<bean id="farm_portal_portal_DaoId" class="com.farm.portal.dao.impl.PortalDaoImpl">
+		<property name="sessionFatory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="sqlTools">
+			<bean class="com.farm.core.sql.utils.HibernateSQLTools">
+				<constructor-arg>
+					<ref bean="sessionFactory" />
+				</constructor-arg>
+				<constructor-arg>
+					<bean class="com.farm.portal.domain.Portal"></bean>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- Server实现 -->
+	<bean id="farm_portal_PortalTree_ServiceId" class="com.farm.portal.service.impl.PortalServiceImpl">
+		<property name="portaltreeDao">
+			<ref bean="farm_portal_PortalTree_DaoId" />
+		</property>
+		<property name="componentdefDao">
+			<ref bean="farm_portal_ComponentDef_DaoId" />
+		</property>
+		<property name="portalDao">
+			<ref bean="farm_portal_portal_DaoId" />
+		</property>
+		<property name="portalexcuteDao">
+			<ref bean="farm_portal_portalExcute_DaoId" />
+		</property>
+		<property name="componentexcuteDao">
+			<ref bean="farm_portal_ComponentExcute_DaoId" />
+		</property>
+		<property name="componentDao">
+			<ref bean="farm_portal_Component_DaoId" />
+		</property>
+	</bean>
+	<!-- Server事务代理类 -->
+	<bean id="farm_portal_Portal_ProxyId"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>
+					com.farm.portal.service.PortalServiceInter
+        		</value>
+			</list>
+		</property>
+		<property name="transactionManager">
+			<ref bean="TransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="farm_portal_PortalTree_ServiceId" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="farm_portal_PortalTree_Trancation" />
+		</property>
+	</bean>
+	<!-- 事务属性声明 -->
+	<bean id="farm_portal_PortalTree_Trancation"
+		class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+		<property name="properties">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

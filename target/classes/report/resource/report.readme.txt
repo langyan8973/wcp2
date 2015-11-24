@@ -1,0 +1,94 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+	<!--将该脚本加入struts2配置文件中      系统日志-->
+<struts>
+	<package name="FarmReport_Jsp_code" extends="struts-default">
+		<action name="logExcelDemo" method="report"
+			class="com.farm.report.web.action.reportDemoQuery">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="log.xls"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+/**
+ * 系统日志
+ * 
+ * @author autoCode
+ * 
+ */
+public class reportDemoQuery extends WebSupport {
+	private DataResult result;// 结果集合
+	private DataQuery query;// 条件查询
+	private InputStream inputStream;
+
+	public String report() {
+		try {
+			query = DataQuery
+					.init(
+							query,
+							"alone_applog a left join alone_user b on b.id=a.APPUSER",
+							"a.id as id,a.CTIME as ctime,a.DESCRIBES as describes,b.name as APPUSER,a.LEVEL as level,a.METHOD as method,a.CLASSNAME as classname,a.IP as ip");
+			query.setPagesize(1000);
+			query.addDefaultSort(new DBSort("a.CTIME", "DESC"));
+			result = query.search();
+			result.runformatTime("CTIME", "yyyy-MM-dd_HH/mm/ss");
+			log.info("查询结果集合");
+			// ------------------------开始报表
+			inputStream = FarmReport.newInstance("basictags.xls").addParameter(
+					"result", result.getResultList()).addParameter(
+					"department", "JISH").generate();
+		} catch (Exception e) {
+			result = DataResults.setException(result, e);
+		}
+		return SUCCESS;
+	}
+
+	private final static ReportManagerInter reportIMP = (ReportManagerInter) BEAN("excelReportId");
+
+	// ----------------------------------------------------------------------------------
+
+	private static final Logger log = Logger.getLogger(reportDemoQuery.class);
+
+	public DataResult getResult() {
+		return result;
+	}
+
+	public void setResult(DataResult result) {
+		this.result = result;
+	}
+
+	public DataQuery getQuery() {
+		return query;
+	}
+
+	public void setQuery(DataQuery query) {
+		this.query = query;
+	}
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 加载树节点 public String loadTreeNode() { treeNodes =
+	 * EasyUiTreeNode.formatAjaxTree(EasyUiTreeNode .queryTreeNodeOne(id,
+	 * "SORT", "alone_menu", "ID", "PARENTID", "NAME").getResultList(),
+	 * EasyUiTreeNode .queryTreeNodeTow(id, "SORT", "alone_menu", "ID",
+	 * "PARENTID", "NAME").getResultList(), "PARENTID", "ID", "NAME"); return
+	 * SUCCESS; }
+	 * 
+	 * @return
+	 */
+}

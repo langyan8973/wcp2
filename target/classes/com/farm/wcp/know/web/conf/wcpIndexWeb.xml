@@ -1,0 +1,194 @@
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="wcpKnow_Jsp_code" extends="struts-default">
+		<!-- 添加分类 -->
+		<action name="FLtypeAdd" method="typeAdd"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/typeForm.jsp</result>
+		</action>
+		<!-- 添加分类或修改分类 提交 -->
+		<action name="FLtypeSaveCommit" method="typeSaveCommit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPtype.htm?id=${id}</result>
+			<result name="input">/UI-WEB/know/typeForm.jsp</result>
+		</action>
+		<!-- 修改分类 -->
+		<action name="FLtypeEdit" method="typeEdit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/typeForm.jsp</result>
+		</action>
+		<!-- 删除分类 -->
+		<action name="FLtypeDel" method="typeDel"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPtype.htm?id=${id}</result>
+		</action>
+		<!--分类展示页面(单页) -->
+		<action name="FPtype" method="typePage"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/type.jsp</result>
+		</action>
+		<!-- 创建 -->
+		<action name="FLcreatKnow" method="index"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/creat.jsp</result>
+		</action>
+		<!-- 下载网页并创建文档 -->
+		<action name="FLDownWebKnow" method="downWeb"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/downWeb.jsp</result>
+		</action>
+		<!-- 提交网页地址 -->
+		<action name="FLDownWebCommit" method="downWebCommit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/creat.jsp</result>
+			<result name="input">/UI-WEB/know/downWeb.jsp</result>
+		</action>
+		<!-- 修改 -->
+		<action name="FLEditKnow" method="edit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/edit.jsp</result>
+		</action>
+		<!-- 提交修改 -->
+		<action name="FLEditKnowCommit" method="editCommit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPDocShow.htm?id=${id}</result>
+		</action>
+		<!-- 删除 -->
+		<action name="FLDelKnow" method="delCommit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPwcp.do</result>
+		</action>
+		<!-- 公开文档 -->
+		<action name="FLflyKnow" method="flyKnow"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPDocShow.htm?id=${id}</result>
+		</action>
+		<!-- 提交创建 -->
+		<action name="FLKnowAddSubmit" method="submitAdd"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FPDocShow.htm?id=${id}</result>
+		</action>
+		<!-- 显示文档信息 -->
+		<action name="FPDocShow" method="showDoc"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result name="WEBSITE" type="redirect">
+				index/FPwebSiteVisitSite.htm?id=${id}
+			</result>
+			<result name="WEBFILE" type="redirect">
+				index/FPwebfile.htm?id=${id}
+			</result>
+			<result>/UI-WEB/know/showDoc.jsp</result>
+			<result name="ERROR">/UI-WEB/authNo.jsp</result>
+		</action>
+		<!-- 显示最新知识列表 -->
+		<action name="FPNewDocShow" method="showNewDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/newKnows.jsp</result>
+		</action>
+		<!-- 显示我的知识列表 -->
+		<action name="FPMyDocShow" method="showMyDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/mydoc.jsp</result>
+		</action>
+		<!-- 显示分类知识列表 -->
+		<action name="FPTypeDocShow" method="showTypeDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/typeKnows.jsp</result>
+		</action>
+		<!-- 显示分类知识列表简单 -->
+		<action name="FPTypeDocShow2" method="showTypeDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/typeKnows2.jsp</result>
+		</action>
+		<!-- 显示最热知识列表 -->
+		<action name="FPHotDocShow" method="showhotDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/hotKnows.jsp</result>
+		</action>
+		<action name="FPHotDocShowMin" method="showhotDocList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/hotKnowsMin.jsp</result>
+		</action>
+		<!-- 分类内容页面 -->
+		<action name="FPTypeInfo" method="typeKnowInfo"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/typeInfo.jsp</result>
+		</action>
+		<!-- 显示公共分类 显示最初三层分类-->
+		<action name="FPPubTypeShow" method="showPubAllTypeList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/PubType.jsp</result>
+		</action>
+		<!-- 显示公共分类 分类详细信息-->
+		<action name="FPPubTypeShow2" method="showPubTypeList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/PubType2.jsp</result>
+		</action>
+		<!-- 显示选择分类 -->
+		<action name="FPDoctypeTreeShow" method="showChooseTypeList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/typeTreeShowPage.jsp</result>
+		</action>
+		<!-- 发送留言 -->
+		<action name="FLDocMessageShow" method="docMessage"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/docMessage.jsp</result>
+		</action>
+		<!-- 发送留言提交 -->
+		<action name="FLDocMessageSubmit" method="docMessageSubmit"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="redirect">index/FLDocMessageShow.htm?id=${id}</result>
+		</action>
+		<!-- 我发表的留言 -->
+		<action name="FLMySendMessageList" method="mySendMessageList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/mySendMessage.jsp</result>
+		</action>
+		<!-- 我收到的留言 -->
+		<action name="FLMyMessageList" method="myMessageList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/myMessage.jsp</result>
+		</action>
+		<!-- 文档版本信息 -->
+		<action name="FPDocVersions" method="docVersions"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/docVersions.jsp</result>
+		</action>
+		<!-- 显示文档版本信息 -->
+		<action name="FPDocVersionShow" method="showDocVersion"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/showVersionInfo.jsp</result>
+		</action>
+	</package>
+	<package name="wcpKnow_Json_code" extends="json-default">
+		<!-- 收藏文章 -->
+		<action name="FLenjoy" method="enjoy"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 取消收藏文章 -->
+		<action name="FLunEnjoy" method="unenjoy"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 好评给文档 -->
+		<action name="FPPraiseYes" method="praiseYes"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 差评给文档 -->
+		<action name="FPPraiseNo" method="praiseNo"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="json"></result>
+		</action>
+		<!-- 按照名称查询知识（数据库查询） -->
+		<action name="FPsearchKnow" method="searchKnowByName"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>

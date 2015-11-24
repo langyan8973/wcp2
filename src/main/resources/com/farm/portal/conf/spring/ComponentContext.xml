@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   功能:组件库,作者:FarmCode代码工程,日期:20141119144919
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+  <!-- 组件库Dao实现 -->
+  <bean id="farm_portal_Component_DaoId"
+    class="com.farm.portal.dao.impl.ComponentDaoImpl">
+    <property name="sessionFatory">
+      <ref bean="sessionFactory" />
+    </property>
+    <property name="sqlTools">
+      <bean  class="com.farm.core.sql.utils.HibernateSQLTools">
+        <constructor-arg>
+           <ref bean="sessionFactory" />
+        </constructor-arg>
+        <constructor-arg>
+          <bean class="com.farm.portal.domain.Component"></bean>
+        </constructor-arg>
+      </bean>
+    </property>
+  </bean>
+  <!-- Server实现 -->
+  <bean id="farm_portal_Component_ServiceId"
+    class="com.farm.portal.service.impl.ComponentServiceImpl">
+    <property name="componentDao">
+      <ref bean="farm_portal_Component_DaoId" />
+    </property>
+  </bean>
+  <!-- Server事务代理类 -->
+  <bean id="farm_portal_Component_ProxyId"
+    class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="proxyInterfaces">
+      <list>
+        <value>
+          com.farm.portal.service.ComponentServiceInter
+        </value>
+      </list>
+    </property>
+    <property name="transactionManager">
+      <ref bean="TransactionManager" />
+    </property>
+    <property name="target">
+      <ref bean="farm_portal_Component_ServiceId" />
+    </property>
+    <property name="transactionAttributeSource">
+      <ref bean="farm_portal_Component_Trancation" />
+    </property>
+  </bean>
+  <!-- 事务属性声明 -->
+  <bean id="farm_portal_Component_Trancation"
+    class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource">
+    <property name="properties">
+      <props>
+        <prop key="*">PROPAGATION_REQUIRED</prop>
+      </props>
+    </property>
+  </bean>
+</beans>
