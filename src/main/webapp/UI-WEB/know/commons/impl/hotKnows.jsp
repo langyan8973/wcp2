@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
 <!-- ID,TITLE,DOCDESCRIBE,AUTHOR,PUBTIME,TAGKEY ,IMGID,VISITNUM,PRAISEYES,PRAISENO,HOTNUM,TYPENAME -->
-<div class="row mytitlebar">
+<div class="row">
 	<div class="col-sm-12" style="margin-bottom: 8px;">
 		<span style="color: #D9534F;"
 			class="glyphicon glyphicon-fire wcp_columnTitle">常用</span>
