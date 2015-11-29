@@ -18,10 +18,10 @@
 	//-->
 </script>
 <link
-	href="<PF:basePath/>WEB-FACE/model/bootstrap/css/bootstrap.min.css"
+	href="<PF:basePath/>WEB-FACE/model/bootstrap/css/bootstrap.css"
 	rel="stylesheet">
 <link
-	href="<PF:basePath/>WEB-FACE/model/bootstrap/css/bootstrap-theme.min.css"
+	href="<PF:basePath/>WEB-FACE/model/bootstrap/css/bootstrap-theme.css"
 	rel="stylesheet">
 <script src="<PF:basePath/>WEB-FACE/script/jquery-1.8.0.min.js"></script>
 <script src="<PF:basePath/>WEB-FACE/model/bootstrap/js/bootstrap.min.js"></script>

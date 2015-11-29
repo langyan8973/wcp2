@@ -14,11 +14,11 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand"
+		<%-- <a class="navbar-brand"
 			style="color: #ffffff; font-weight: bold; padding: 5px;"
 			href="index/FPwcp.htm"> <img
 				src="<PF:basePath/>WEB-FACE/img/style/logo.png" height="40"
-				alt="WCP" title="WCP" align="middle" /> </a>
+				alt="WCP" title="WCP" align="middle" /> </a> --%>
 	</div>
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
