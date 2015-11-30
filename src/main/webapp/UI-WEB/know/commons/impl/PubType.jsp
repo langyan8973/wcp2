@@ -20,7 +20,7 @@
 </style>
 <div class="row">
 	<div class="col-sm-12" style="margin-bottom: 8px;">
-		<span style="color: #D9534F;"
+		<span style="color: #428BCA;"
 			class="glyphicon glyphicon-tag wcp_columnTitle">分类</span>
 		<hr />
 		<ul class="doctypeUl">

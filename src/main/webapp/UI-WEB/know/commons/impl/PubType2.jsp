@@ -10,62 +10,63 @@
 -->
 </style>
 <div class="row">
-	<div class="col-sm-12" style="margin-bottom: 16px;">
-		<span style="color: #D9534F;"
+	<div class="col-sm-12 mytitlebar">
+		<span style="color: #FFFFFF;"
 			class="glyphicon glyphicon-tag wcp_columnTitle">分类<c:if
 				test="${knowtype!=null}">:${knowtype}</c:if> </span>
-		<em>某些被赋予权限的知识在登录后被显示</em>
-		<div class="btn-group" role="group" aria-label=""
-			style="float: right;">
-			<c:if test="${USEROBJ!=null}">
-				<PF:AuthForUser actionName="FarmDoctype_ACTION_CONSOLE">
-					<div class="btn-group" role="group">
-						<button type="button"
-							class="btn btn-default dropdown-toggle btn-sm"
-							data-toggle="dropdown" aria-expanded="false">
-							分类管理
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu" style="min-width: 120px;">
+		<em style="color: #FFFFFF;">某些被赋予权限的知识在登录后被显示</em>
+		
+	</div>
+	<div class="btn-group" role="group" aria-label=""
+		style="float: right; margin-top:10px;">
+		<c:if test="${USEROBJ!=null}">
+			<PF:AuthForUser actionName="FarmDoctype_ACTION_CONSOLE">
+				<div class="btn-group" role="group">
+					<button type="button"
+						class="btn btn-default dropdown-toggle btn-sm"
+						data-toggle="dropdown" aria-expanded="false">
+						分类管理
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" style="min-width: 120px;">
+						<li>
+							<a class="glyphicon glyphicon-plus"
+								href="index/FLtypeAdd.htm?id=${currentTypeid}">添加分类 </a>
+						</li>
+						<c:if test="${id!=null&&id!='NONE'}">
 							<li>
-								<a class="glyphicon glyphicon-plus"
-									href="index/FLtypeAdd.htm?id=${currentTypeid}">添加分类 </a>
+								<a class="glyphicon glyphicon-pencil"
+									href="index/FLtypeEdit.htm?id=${currentTypeid}">修改分类 </a>
 							</li>
-							<c:if test="${id!=null&&id!='NONE'}">
-								<li>
-									<a class="glyphicon glyphicon-pencil"
-										href="index/FLtypeEdit.htm?id=${currentTypeid}">修改分类 </a>
-								</li>
-								<li>
-									<a class="glyphicon glyphicon-remove"
-										id="removeDocTypeButtonId">删除分类 </a>
-								</li>
-							</c:if>
-						</ul>
-					</div>
-				</PF:AuthForUser>
+							<li>
+								<a class="glyphicon glyphicon-remove"
+									id="removeDocTypeButtonId">删除分类 </a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+			</PF:AuthForUser>
+		</c:if>
+		<c:if test="${id!=null&&id!='NONE'}">
+			<c:if test="${USEROBJ!=null}">
+				<div class="btn-group" role="group">
+					<button type="button"
+						class="btn btn-default dropdown-toggle btn-sm"
+						data-toggle="dropdown" aria-expanded="false">
+						创建知识
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<jsp:include
+							page="/UI-WEB/user/commons/userMenu/userKnowMenu.jsp"></jsp:include>
+					</ul>
+				</div>
 			</c:if>
-			<c:if test="${id!=null&&id!='NONE'}">
-				<c:if test="${USEROBJ!=null}">
-					<div class="btn-group" role="group">
-						<button type="button"
-							class="btn btn-default dropdown-toggle btn-sm"
-							data-toggle="dropdown" aria-expanded="false">
-							创建知识
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<jsp:include
-								page="/UI-WEB/user/commons/userMenu/userKnowMenu.jsp"></jsp:include>
-						</ul>
-					</div>
-				</c:if>
-			</c:if>
-			<c:if test="${id!=null&&id!='NONE'}">
-				<a href="index/FPtype.htm?id=${typeid}" type="button"
-					class="btn btn-primary btn-sm">返回上级</a>
-			</c:if>
-		</div>
+		</c:if>
+		<c:if test="${id!=null&&id!='NONE'}">
+			<a href="index/FPtype.htm?id=${typeid}" type="button"
+				class="btn btn-primary btn-sm">返回上级</a>
+		</c:if>
 	</div>
 </div>
 <c:if test="${pageset.message!=null&&pageset.message!=''}">
@@ -80,7 +81,7 @@
 		</div>
 	</div>
 </c:if>
-<div class="row">
+<div class="row" style="margin-top:10px;">
 	<c:forEach var="node" items="${result.resultList}">
 		<c:if test="${node.PARENTID==id}">
 			<div class="col-sm-4">

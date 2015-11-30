@@ -3,7 +3,7 @@
 <%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
 <%@ taglib uri="/WEB-TAG/farmdoc.tld" prefix="DOC"%>
 <div
-	style="text-align: center; color: #FFFFFF; background-color: #1F1F1F; padding: 8px;">
+	style="text-align: center; color: #FFFFFF; background-color: #1e2b3a; padding: 8px;">
 	<!-- WCP开源版,禁止用于商业用途 macplus@126.com -->
 	版权所有
 </div>

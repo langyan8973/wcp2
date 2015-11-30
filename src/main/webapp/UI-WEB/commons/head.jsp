@@ -53,7 +53,7 @@
 				检索
 			</button>
 		</form>
-		<p class="navbar-title">北京市城乡规划知识库</p>
+		<p class="navbar-title">北京城乡规划督查督导知识库</p>
 		
 		<ul class="nav navbar-nav navbar-right">
 			<%-- <c:if test="${USEROBJ!=null}">

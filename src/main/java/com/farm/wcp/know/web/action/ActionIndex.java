@@ -581,7 +581,7 @@ public class ActionIndex extends WebSupport {
 	 */
 	public String showUserHome() {
 		try {
-			user = userIMP.getUserEntity(id);
+			user = userIMP.getUserEntity(getCurrentUser().getId());
 			result = knowIMP.getMyDocQuery(query, user).search();
 			for (Map<String, Object> node : result.getResultList()) {
 				node.put("PUBTIME", FarmFormatUnits.getFormateTime(

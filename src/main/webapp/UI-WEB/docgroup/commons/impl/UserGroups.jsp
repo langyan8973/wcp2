@@ -5,8 +5,8 @@
 <div class="panel panel-default">
 	<div class="panel-body" style="background-color: #FCFCFA;">
 			<p>
-				<span class="glyphicon glyphicon-tree-conifer wcp_columnTitle">知识小组</span>
-				&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #959486;"> 
+				<span class="glyphicon glyphicon-tree-conifer wcp_columnTitle" style="color:#2a6496;">知识小组</span>
+				&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #2a6496;"> 
 						该用户加入了如下知识小组
 				</span>
 			</p>

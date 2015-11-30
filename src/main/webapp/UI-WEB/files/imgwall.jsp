@@ -13,7 +13,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-md-3">
 						<img style="max-height: 50px;" src="WEB-FACE/img/style/logo.png" />
@@ -37,8 +37,8 @@
 				</div>
 				<div class="row" style="margin-top: 4px;">
 					<div class="col-sm-12">
-						<ol class="breadcrumb">
-							<li>
+						<ol class="breadcrumb mytitlebar">
+							<li style="color:#FFFFFF">
 								共检索到${result.totalSize}条记录:
 							</li>
 						</ol>

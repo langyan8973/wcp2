@@ -6,7 +6,7 @@
 	<head>
 		<base href="<PF:basePath/>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>下载网络资源-<PF:ParameterValue key="config.sys.title"/></title>
+		<title>下载网络资源<%-- -<PF:ParameterValue key="config.sys.title"/> --%></title>
 		<jsp:include page="/WEB-FACE/conf/include_bootstart.jsp"></jsp:include>
 		<script charset="utf-8"
 			src="<PF:basePath/>WEB-FACE/model/supervilidate/validate.js"></script>
@@ -14,7 +14,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-md-3  visible-lg visible-md">
 						<div class="panel panel-default userbox">
@@ -28,14 +28,14 @@
 					<div class="col-md-9">
 						<div class="row">
 							<div class="col-md-12">
-								<ol class="breadcrumb">
+								<ol class="breadcrumb mytitlebar">
 									<li>
-										<a>WCP</a>
+										<a style="color:#FFFFFF">WCP</a>
 									</li>
 									<li>
-										<a>创建知识</a>
+										<a style="color:#FFFFFF">创建知识</a>
 									</li>
-									<li class="active">
+									<li class="active" style="color:#FFFFFF">
 										下载网页
 									</li>
 								</ol>

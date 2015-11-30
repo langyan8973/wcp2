@@ -4,6 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <ul class="nav nav-pills nav-stacked nav-sm">
 	<li class="dropdown">
+		<a href="index/FPuserHome.do"><span
+			class="glyphicon glyphicon-home"></span>&nbsp;个人首页</a>
+	</li>
+	<li class="dropdown">
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
 			class="glyphicon glyphicon-user"></span>&nbsp;基本信息<span class="caret"></span>
 		</a>

@@ -20,7 +20,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-md-3  visible-lg visible-md">
 						<div class="panel panel-default userbox">
@@ -33,11 +33,9 @@
 					</div>
 					<div class="col-md-9">
 						<div class="row">
-							<div class="col-sm-12" style="margin-bottom: 8px;">
-								<h3>
-									<span style="color: #D9534F; font-weight: bold;"
-										class="glyphicon glyphicon-new-window">我发表-留言</span>
-								</h3>
+							<div class="col-sm-12 mytitlebar">
+								<span style="color: #FFFFFF;"
+										class="glyphicon glyphicon-new-window wcp_columnTitle">我发表-留言</span>
 							</div>
 						</div>
 						<div class="row">

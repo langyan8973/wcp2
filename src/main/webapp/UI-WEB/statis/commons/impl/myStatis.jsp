@@ -5,9 +5,9 @@
 <div class="panel panel-default" style="background-color: #FCFCFA;">
 	<div class="panel-body">
 		<p>
-			<span class="glyphicon glyphicon-stats wcp_columnTitle">个人贡献</span>
+			<span class="glyphicon glyphicon-stats wcp_columnTitle" style="color:#2a6496;">个人贡献</span>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span style="color: #959486;"> <c:forEach
+			<span style="color: #2a6496;"> <c:forEach
 					items="${result.resultList}" varStatus="status" var="node">
 					<small>当前用户于</small>
 					<strong> <PF:FormatTime date="${node.CTIME}"

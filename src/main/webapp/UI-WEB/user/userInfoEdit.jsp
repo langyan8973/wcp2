@@ -6,7 +6,7 @@
 	<head>
 		<base href="<PF:basePath/>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>个人信息-<PF:ParameterValue key="config.sys.title" /></title>
+		<title>个人信息<%-- -<PF:ParameterValue key="config.sys.title" /> --%></title>
 		<jsp:include page="/WEB-FACE/conf/include_bootstart.jsp"></jsp:include>
 		<script charset="utf-8"
 			src="<PF:basePath/>WEB-FACE/model/supervilidate/validate.js"></script>
@@ -18,7 +18,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-sm-3  visible-lg visible-md">
 						<div class="panel panel-default userbox">
@@ -29,10 +29,9 @@
 					</div>
 					<div class="col-sm-9">
 						<div class="row">
-							<div class="col-sm-12" style="margin-bottom: 8px;">
-								<span style="color: #D9534F;"
+							<div class="col-sm-12 mytitlebar" style="margin-bottom: 8px;">
+								<span style="color: #FFFFFF;"
 									class="glyphicon glyphicon-user wcp_columnTitle">个人信息修改</span>
-								<hr />
 							</div>
 						</div>
 						<div class="row">

@@ -9,7 +9,7 @@
 			class="glyphicon glyphicon-fire wcp_columnTitle">常用</span>
 	</div>
 </div>
-<div class="row" style="margin-top: 16px;">
+<div class="row" style="margin-top: 4px;">
 	<div class="col-sm-12">
 		<div class="list-group">
 			<c:forEach items="${result.resultList}" varStatus="status" var="node">

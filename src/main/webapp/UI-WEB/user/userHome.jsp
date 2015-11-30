@@ -6,7 +6,7 @@
 <head>
 <base href="<PF:basePath/>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>${user.name}-<PF:ParameterValue key="config.sys.title" /></title>
+<title>${user.name}<%-- -<PF:ParameterValue key="config.sys.title" /> --%></title>
 <jsp:include page="/WEB-FACE/conf/include_bootstart.jsp"></jsp:include>
 <script charset="utf-8"
 	src="<PF:basePath/>WEB-FACE/model/supervilidate/validate.js"></script>
@@ -18,7 +18,7 @@
 <body>
 	<jsp:include page="../commons/head.jsp"></jsp:include>
 	<div class="containerbox">
-		<div class="container ">
+		<div class="container " style="margin-top:30px;">
 			<div class="row">
 				<div class="col-sm-12">
 					<!-- ID,TITLE,DOCDESCRIBE,AUTHOR,PUBTIME,TAGKEY ,IMGID,VISITNUM,PRAISEYES,PRAISENO,HOTNUM,TYPENAME -->

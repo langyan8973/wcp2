@@ -3,14 +3,14 @@
 <%@ taglib uri="/WEB-TAG/platForm.tld" prefix="PF"%>
 <%@ taglib uri="/WEB-TAG/farmdoc.tld" prefix="DOC"%>
 <!-- /.row -->
-<ol class="breadcrumb">
+<ol class="breadcrumb mytitlebar" style="padding-top:1px;">
 	<li>
-		<span style="color: #2F70A7;"
-			class="glyphicon glyphicon glyphicon-tree-conifer wcp_columnTitle">全部小组<c:if
+		<span style="color: #FFFFFF;"
+			class="glyphicon glyphicon-tree-conifer wcp_columnTitle">全部小组<c:if
 				test="${searchGroupKey!=null&&searchGroupKey!=''}">(过滤条件:${searchGroupKey })</c:if>
 		</span>&nbsp;
 	</li>
-	<li>
+	<li style="color: #FFFFFF;">
 		共检索到${result.totalSize}条记录:
 	</li>
 </ol>

@@ -6,7 +6,7 @@
 	<head>
 		<base href="<PF:basePath/>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>分类知识-<PF:ParameterValue key="config.sys.title" />
+		<title>分类知识<%-- -<PF:ParameterValue key="config.sys.title" /> --%>
 		</title>
 		<jsp:include page="/WEB-FACE/conf/include_bootstart.jsp"></jsp:include>
 		<link rel="stylesheet"
@@ -21,7 +21,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-md-3  visible-lg visible-md">
 						<div class="panel panel-default userbox">
@@ -32,8 +32,8 @@
 					</div>
 					<div class="col-md-9">
 						<div class="row">
-							<div class="col-sm-12" style="margin-bottom: 16px;">
-								<span style="color: #D9534F;"
+							<div class="col-sm-12 mytitlebar">
+								<span style="color: #FFFFFF;"
 									class="glyphicon glyphicon-tag wcp_columnTitle">上级分类<c:if
 										test="${knowtype!=null}">:${knowtype}</c:if> </span>
 							</div>

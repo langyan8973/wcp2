@@ -11,12 +11,12 @@
 		href="index/FLDownWebKnow.htm?typeid=${currentTypeid}&docgroup=${group.id}"><span
 		class="glyphicon glyphicon-save"></span>&nbsp;下载网页知识 </a>
 </li>
-<li>
+<%-- <li>
 	<a
 		href="index/webSiteshowPage.htm?typeid=${currentTypeid}&docgroup=${group.id}"><span
 		class="glyphicon glyphicon-cloud-upload"></span>&nbsp;上传HTML站点
 	</a>
-</li>
+</li> --%>
 <li>
 	<a
 		href="index/FLcreatWebFile.htm?typeid=${currentTypeid}&docgroup=${group.id}"><span

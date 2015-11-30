@@ -20,7 +20,7 @@
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container "><jsp:include
+			<div class="container " style="margin-top:30px;"><jsp:include
 					page="commons/includeSearch.jsp"></jsp:include>
 				<div class="row">
 					<c:if test="${USEROBJ!=null}">
