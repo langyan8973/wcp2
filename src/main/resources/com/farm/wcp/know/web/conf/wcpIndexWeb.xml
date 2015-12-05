@@ -87,6 +87,11 @@
 			class="com.farm.wcp.know.web.action.ActionIndex">
 			<result>/UI-WEB/know/commons/impl/newKnows.jsp</result>
 		</action>
+		<!-- 最新图片列表 -->
+		<action name="FPNewImageShow" method="showNewImageList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/newImages.jsp</result>
+		</action>
 		<!-- 显示我的知识列表 -->
 		<action name="FPMyDocShow" method="showMyDocList"
 			class="com.farm.wcp.know.web.action.ActionIndex">

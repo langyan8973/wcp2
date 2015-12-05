@@ -457,6 +457,54 @@ public class ActionIndex extends WebSupport {
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 显示公开的最新知识图片
+	 * 
+	 * @return
+	 */
+	public String showNewImageList(){
+		
+		try {
+			query = DataQuery
+					.init(
+							query,
+							"FARM_RF_DOCTEXTFILE a LEFT JOIN FARM_DOC b ON a.DOCID=b.ID LEFT JOIN FARM_DOCFILE c ON a.FILEID=c.ID ",
+							" B.ID AS DOCID,B.TITLE as TITLE,C.EXNAME  AS EXNAME,C.NAME as NAME,C.ID AS FILEID,C.PSTATE ");
+			query.setPagesize(30);
+			query.addRule(new DBRule("b.READPOP", "1", "="));
+			query.addSort(new DBSort("b.ETIME", "desc"));
+			query.setDistinct(true);
+			query.setCache(Integer.valueOf(FarmService.getInstance()
+					.getParameterService().getParameter(
+							"config.wcp.cache.imgwall")), CACHE_UNIT.minute);
+			query
+					.addSqlRule(" AND REPLACE(UPPER(c.EXNAME),'.','')  IN ('PNG','JPG','GIF')");
+			result = query.search();
+			List<String> docids = new ArrayList<String>();
+			for (Map<String, Object> node : result.getResultList()) {
+				node.put("URL", fileIMP.getFileURL(node.get("FILEID")
+						.toString()));
+				if(docids.size()==0){
+					docids.add(node.get("DOCID").toString());
+					node.put("DISPLAY", 1);
+				}
+				else{
+					if(docids.size()<=5&&!docids.contains(node.get("DOCID").toString())){
+						docids.add(node.get("DOCID").toString());
+						node.put("DISPLAY", 1);
+					}
+					else{
+						node.put("DISPLAY", 0);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
 
 	/**
 	 * 显示公开的最热知识
