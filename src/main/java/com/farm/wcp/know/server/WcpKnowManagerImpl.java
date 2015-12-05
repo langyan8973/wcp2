@@ -369,11 +369,11 @@ public class WcpKnowManagerImpl implements WcpKnowManagerInter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		List<Map<String, Object>> a = result.getResultList();
-		for (Map<String, Object> node : a) {
-			System.out.println(node.get("TAGKEY"));
-			System.out.println(node.get("DOCNUM"));
-		}
+//		List<Map<String, Object>> a = result.getResultList();
+//		for (Map<String, Object> node : a) {
+//			System.out.println(node.get("TAGKEY"));
+//			System.out.println(node.get("DOCNUM"));
+//		}
 		return result;
 	}
 

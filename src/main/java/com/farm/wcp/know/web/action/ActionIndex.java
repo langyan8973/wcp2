@@ -836,9 +836,6 @@ public class ActionIndex extends WebSupport {
 	 */
 	public String showTopTagList() {
 		result = knowIMP.getAllTags(10);
-		for (Map<String, Object> node : result.getResultList()) {
-			
-		}
 		return SUCCESS;
 	}
 
