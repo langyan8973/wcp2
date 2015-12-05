@@ -827,6 +827,20 @@ public class ActionIndex extends WebSupport {
 		}
 		return SUCCESS;
 	}
+	
+	
+	/**
+	 * 显示Tag列表
+	 * 
+	 * @return
+	 */
+	public String showTopTagList() {
+		result = knowIMP.getAllTags(10);
+		for (Map<String, Object> node : result.getResultList()) {
+			
+		}
+		return SUCCESS;
+	}
 
 	private final FarmFileManagerInter fileIMP = (FarmFileManagerInter) BeanFactory
 			.getBean("farm_docFileProxyId");

@@ -161,6 +161,12 @@
 			class="com.farm.wcp.know.web.action.ActionIndex">
 			<result>/UI-WEB/know/showVersionInfo.jsp</result>
 		</action>
+		
+		<!-- tag列表  zhaofei-->
+		<action name="FPTopTagList" method="showTopTagList"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/commons/impl/topTags.jsp</result>
+		</action>
 	</package>
 	<package name="wcpKnow_Json_code" extends="json-default">
 		<!-- 收藏文章 -->

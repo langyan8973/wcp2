@@ -123,4 +123,11 @@ public interface WcpKnowManagerInter {
 	 */
 	public DataQuery getTypeInfos(String parentId);
 
+	/** 
+	 * 获取所有Tag列表，按照文档数量排序
+	 * @param pagesize
+	 * @return
+	 */
+	DataResult getAllTags(int pagesize);
+
 }

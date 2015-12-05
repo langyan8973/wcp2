@@ -55,20 +55,20 @@
 				</c:if>
 				<div class="row">
 					<div class="col-sm-3">
-						<%-- <jsp:include page="commons/includeTowDCode.jsp"></jsp:include> --%>
-						<%-- <div class="visible-lg visible-md">
-							<c:if test="${USEROBJ!=null}"><jsp:include
-									page="docgroup/commons/includeMyGroupMin.jsp"></jsp:include>
-							</c:if>
-						</div> --%>
-						<jsp:include page="know/commons/includeHotKnowsMin.jsp"></jsp:include>
+<%-- 						<jsp:include page="commons/includeTowDCode.jsp"></jsp:include> --%>
+<!-- 						<div class="visible-lg visible-md"> -->
+<%-- 							<c:if test="${USEROBJ!=null}"><jsp:include --%>
+<%-- 									page="docgroup/commons/includeMyGroupMin.jsp"></jsp:include> --%>
+<%-- 							</c:if> --%>
+<!-- 						</div>  -->
+						<jsp:include page="know/commons/includeTopTags.jsp"></jsp:include>
 					</div>
 					<div class="col-sm-9">
-						<%-- <c:if test="${USEROBJ!=null}">
-							<jsp:include page="docgroup/commons/includeHomeMyGroup.jsp"></jsp:include>
-						</c:if> --%>
+<%--  						<c:if test="${USEROBJ!=null}"> --%>
+<%-- 							<jsp:include page="docgroup/commons/includeHomeMyGroup.jsp"></jsp:include> --%>
+<%-- 						</c:if>  --%>
 						<jsp:include page="know/commons/includeNewKnows.jsp"></jsp:include>
-						<%-- <jsp:include page="docgroup/commons/includeHomePubGroup.jsp"></jsp:include> --%>
+<%-- 						<jsp:include page="docgroup/commons/includeHomePubGroup.jsp"></jsp:include> --%>
 						<div class="row">
 							<div class="col-sm-12">
 							</div>

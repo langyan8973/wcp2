@@ -70,64 +70,46 @@
 			<groupId>com.farm</groupId>
 			<artifactId>farm-authority</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-authority.jar</systemPath>  
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-lucene</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-lucene.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-parameter</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-parameter.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-plan</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-plan.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-protal</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-protal.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-quartz</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-quartz.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-client</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-client.clc.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-report</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-report.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.farm</groupId>
 			<artifactId>farm-core</artifactId>
 			<version>1.0.2</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/farm-core150424.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.struts</groupId>
@@ -188,8 +170,6 @@
 			<groupId>org.wltea</groupId>
 			<artifactId>IKAnalyzer</artifactId>
 			<version>2012</version>
-			<scope>system</scope>  
-		    <systemPath>${basedir}/lib/IKAnalyzer2012_u6.jar</systemPath>
 		</dependency>
 	</dependencies>
 	<properties>
