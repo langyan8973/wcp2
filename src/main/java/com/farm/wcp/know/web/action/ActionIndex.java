@@ -75,6 +75,7 @@ public class ActionIndex extends WebSupport {
 	private String docgroup;
 	private Set<String> fileTypes;
 	private User user;
+	private String whsize;
 
 	/**
 	 * 添加分类
@@ -857,6 +858,45 @@ public class ActionIndex extends WebSupport {
 			pageset.setMessage(e.getMessage());
 			return "ERROR";
 		}
+		return SUCCESS;
+	}
+	
+	public String byNumber() {
+		DataQuery query = DataQuery
+				.getInstance(
+						"1",
+						"a.ID as ID,a.TITLE AS title,a.CUSER as CUSER,a.DOCDESCRIBE AS DOCDESCRIBE,DOMTYPE,a.AUTHOR AS AUTHOR,a.PUBTIME AS PUBTIME,a.TAGKEY AS TAGKEY ,a.IMGID AS IMGID,b.VISITNUM AS VISITNUM,b.PRAISEYES AS PRAISEYES,b.PRAISENO AS PRAISENO,b.HOTNUM AS HOTNUM,d.NAME AS TYPENAME,e.IMGID AS PHOTOID,A.ETIME AS ETIME",
+						"farm_doc a LEFT JOIN farm_docruninfo b ON a.RUNINFOID=b.ID LEFT JOIN farm_rf_doctype c ON c.DOCID=a.ID LEFT JOIN farm_doctype d ON d.ID=c.TYPEID   LEFT JOIN ALONE_AUTH_USER e ON e.ID=a.CUSER");
+		query.addRule(new DBRule("a.READPOP", "1", "="));
+		query.addRule(new DBRule("a.STATE", "1", "="));
+		query.addSort(new DBSort("a.etime", "desc"));		
+		query.setNoCount();
+		try {
+			result = query.search();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		List<Map<String, Object>> resultList = new ArrayList<Map<String,Object>>();
+		for (Map<String, Object> node : result.getResultList()) {
+			
+			String year = id.split("-")[0].toString();
+			String num = id.split("-")[1].toString();
+			
+			if(node.get("TAGKEY").toString().contains(year) && node.get("TAGKEY").toString().contains(num)){
+				node.put("PUBTIME", FarmFormatUnits.getFormateTime(node.get("PUBTIME").toString(), true));
+				String tags = node.get("TAGKEY") != null ? node.get("TAGKEY").toString() : null;
+				if (tags != null && tags.trim().length() > 0) {
+					String[] tags1 = tags.trim().replaceAll("，", ",").replaceAll("、", ",").split(",");
+					node.put("TAGKEY", Arrays.asList(tags1));
+				} else {
+					node.put("TAGKEY", new ArrayList<String>());
+				}
+				node.put("DOCDESCRIBE", node.get("DOCDESCRIBE").toString().replaceAll("<", "").replaceAll(">", ""));
+				resultList.add(node);
+			}		
+			
+		}
+		result.setResultList(resultList);
 		return SUCCESS;
 	}
 

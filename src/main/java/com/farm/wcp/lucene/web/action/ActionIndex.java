@@ -1,6 +1,7 @@
 package com.farm.wcp.lucene.web.action;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,12 @@ import com.farm.doc.server.commons.FarmDocFiles;
 import com.farm.lucene.FarmLuceneFace;
 import com.farm.lucene.server.DocQueryImpl;
 import com.farm.lucene.server.DocQueryInter;
+import com.farm.core.FarmService;
 import com.farm.core.page.PageSet;
+import com.farm.core.sql.query.DBRule;
+import com.farm.core.sql.query.DBSort;
 import com.farm.core.sql.query.DataQuery;
+import com.farm.core.sql.query.DataQuery.CACHE_UNIT;
 import com.farm.core.sql.result.DataResult;
 import com.farm.util.web.FarmFormatUnits;
 import com.farm.util.web.WebHotCase;
@@ -100,6 +105,8 @@ public class ActionIndex extends WebSupport {
 		}
 		return SUCCESS;
 	}
+	
+	
 
 	public String docRelationsearch() {
 		try {

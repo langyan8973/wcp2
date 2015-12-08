@@ -6,13 +6,13 @@
 	<head>
 		<base href="<PF:basePath/>" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>检索-<PF:ParameterValue key="config.sys.title" /></title>
+		<title>检索<%-- -<PF:ParameterValue key="config.sys.title" /> --%></title>
 		<jsp:include page="/WEB-FACE/conf/include_bootstart.jsp"></jsp:include>
 	</head>
 	<body>
 		<jsp:include page="../commons/head.jsp"></jsp:include>
 		<div class="containerbox">
-			<div class="container ">
+			<div class="container " style="margin-top:30px;">
 				<div class="row">
 					<div class="col-sm-3  visible-lg visible-md">
 						<div class="panel panel-default userbox">

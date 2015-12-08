@@ -82,6 +82,11 @@
 			<result>/UI-WEB/know/showDoc.jsp</result>
 			<result name="ERROR">/UI-WEB/authNo.jsp</result>
 		</action>
+		<!-- 文号检索 -->
+		<action name="FPNumber" method="byNumber"
+			class="com.farm.wcp.know.web.action.ActionIndex">
+			<result>/UI-WEB/know/bynumber.jsp</result>
+		</action>
 		<!-- 显示最新知识列表 -->
 		<action name="FPNewDocShow" method="showNewDocList"
 			class="com.farm.wcp.know.web.action.ActionIndex">

@@ -8,6 +8,7 @@
 			class="com.farm.wcp.lucene.web.action.ActionIndex">
 			<result>/UI-WEB/lucene/search.jsp</result>
 		</action>
+	
 		<action name="FPDocRelationLuneneSearch" method="docRelationsearch"
 			class="com.farm.wcp.lucene.web.action.ActionIndex">
 			<result>/UI-WEB/lucene/commons/impl/luceneResultMin.jsp</result>

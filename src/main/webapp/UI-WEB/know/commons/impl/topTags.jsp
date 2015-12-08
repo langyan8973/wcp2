@@ -12,7 +12,7 @@
 	<div class="col-sm-12">
 		<div class="list-group">
 			<c:forEach items="${result.resultList}" varStatus="status" var="node">
-				<a href="index/FPDocShow.htm?id=${node.TAGKEY}" class="list-group-item">
+				<a href="index/FPNumber.htm?id=${node.WH}" class="list-group-item">
 					<span class="glyphicon glyphicon-th-list"></span> ${node.TAGKEY} <b> (${node.DOCNUM})</b>
 				</a>
 			</c:forEach>

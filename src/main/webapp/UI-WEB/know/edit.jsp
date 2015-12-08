@@ -124,7 +124,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="exampleInputEmail1">
-											tag
+											文号
 										</label>
 										<input type="text" class="form-control" id="knowtagId"
 											value="${doc.tagkey}" name="knowtag"
