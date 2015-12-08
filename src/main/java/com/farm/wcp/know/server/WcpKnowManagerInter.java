@@ -128,6 +128,6 @@ public interface WcpKnowManagerInter {
 	 * @param pagesize
 	 * @return
 	 */
-	DataResult getAllTags(int pagesize);
+	DataResult getAllTags( );
 
 }

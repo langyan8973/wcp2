@@ -11,10 +11,17 @@
 <div class="row" style="margin-top: 4px;">
 	<div class="col-sm-12">
 		<div class="list-group">
-			<c:forEach items="${result.resultList}" varStatus="status" var="node">
-				<a href="index/FPNumber.htm?id=${node.WH}" class="list-group-item">
-					<span class="glyphicon glyphicon-th-list"></span> ${node.TAGKEY} <b> (${node.DOCNUM})</b>
-				</a>
+			<c:forEach items="${years}" varStatus="status" var="y">
+				<div>
+					<span>${y}</span>
+					<c:forEach items="${yearWenhao[y]}" varStatus="status" var="node">
+						<a href="index/FPNumber.htm?id=${node.WH}" class="list-group-item">
+							<span class="glyphicon glyphicon-th-list"></span> ${node.TAGKEY} <b> (${node.DOCNUM})</b>
+						</a>
+					</c:forEach>
+				</div>
+
+
 			</c:forEach>
 		</div>
 	</div>

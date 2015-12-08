@@ -357,11 +357,11 @@ public class WcpKnowManagerImpl implements WcpKnowManagerInter {
 
 	// zhaofei
 	@Override
-	public DataResult getAllTags(int pagesize) {
+	public DataResult getAllTags( ) {
 		DataQuery query = DataQuery.init(null,
 				"(SELECT TAGKEY, count(TAGKEY) as DOCNUM FROM FARM_DOC WHERE DOMTYPE=1 group by TAGKEY) AS a", "TAGKEY,DOCNUM");
 		query.addSort(new DBSort("DOCNUM", "desc"));
-		query.setPagesize(pagesize);
+//		query.setPagesize(pagesize);
 		query.setNoCount();
 		DataResult result = null;
 		try {

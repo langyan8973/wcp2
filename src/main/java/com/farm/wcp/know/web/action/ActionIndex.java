@@ -3,7 +3,10 @@ package com.farm.wcp.know.web.action;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -76,6 +79,8 @@ public class ActionIndex extends WebSupport {
 	private Set<String> fileTypes;
 	private User user;
 	private String whsize;
+	private HashMap<Integer, List<Map<String, Object>>> yearWenhao;
+	private List<Integer> years;
 
 	/**
 	 * 添加分类
@@ -98,8 +103,7 @@ public class ActionIndex extends WebSupport {
 	 * @return
 	 */
 	public String searchKnowByName() {
-		DataQuery query = DataQuery.getInstance(1, "TITLE,ID,DOMTYPE",
-				"FARM_DOC");
+		DataQuery query = DataQuery.getInstance(1, "TITLE,ID,DOMTYPE", "FARM_DOC");
 		if (knowtitle != null) {
 			query.addRule(new DBRule("TITLE", knowtitle, "like"));
 		} else {
@@ -259,8 +263,7 @@ public class ActionIndex extends WebSupport {
 	@SuppressWarnings("deprecation")
 	public String docMessage() {
 		doc = docIMP.getDoc(id);
-		query = FarmDocService.getInstance().getMessageService()
-				.createMessageQuery(query);
+		query = FarmDocService.getInstance().getMessageService().createMessageQuery(query);
 		query.addRule(new DBRule("APPID", id, "="));
 		query.addSort(new DBSort("CTIME", "DESC"));
 		try {
@@ -281,8 +284,7 @@ public class ActionIndex extends WebSupport {
 	@SuppressWarnings("deprecation")
 	public String myMessageList() {
 		doc = docIMP.getDoc(id);
-		query = FarmDocService.getInstance().getMessageService()
-				.createMessageQuery(query);
+		query = FarmDocService.getInstance().getMessageService().createMessageQuery(query);
 		query.addRule(new DBRule("READUSERID", getCurrentUser().getId(), "="));
 		query.addSort(new DBSort("CTIME", "DESC"));
 		try {
@@ -290,8 +292,7 @@ public class ActionIndex extends WebSupport {
 			result.runformatTime("CTIME", "yyyy-MM-dd HH:mm:ss");
 			for (Map<String, Object> node : result.getResultList()) {
 				if ("0".equals(node.get("READSTATE"))) {
-					FarmDocService.getInstance().getMessageService()
-							.readMessage(node.get("ID").toString());
+					FarmDocService.getInstance().getMessageService().readMessage(node.get("ID").toString());
 				}
 			}
 		} catch (Exception e) {
@@ -306,8 +307,7 @@ public class ActionIndex extends WebSupport {
 	 * @return
 	 */
 	public String mySendMessageList() {
-		query = FarmDocService.getInstance().getMessageService()
-				.createMessageQuery(query);
+		query = FarmDocService.getInstance().getMessageService().createMessageQuery(query);
 		query.addRule(new DBRule("a.CUSER", getCurrentUser().getId(), "="));
 		query.addSort(new DBSort("a.CTIME", "DESC"));
 		try {
@@ -327,11 +327,8 @@ public class ActionIndex extends WebSupport {
 	 */
 	public String docMessageSubmit() {
 		id = message.getAppid();
-		message = FarmDocService
-				.getInstance()
-				.getMessageService()
-				.sendAnswering(message.getContent(), message.getTitle(),
-						"知识留言", message.getAppid(), getCurrentUser());
+		message = FarmDocService.getInstance().getMessageService()
+				.sendAnswering(message.getContent(), message.getTitle(), "知识留言", message.getAppid(), getCurrentUser());
 		return SUCCESS;
 	}
 
@@ -392,8 +389,7 @@ public class ActionIndex extends WebSupport {
 			result.runformatTime("ETIME", "yyyy/MM/dd HH:mm:ss");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			result = DataResult.getInstance(
-					new ArrayList<Map<String, Object>>(), 0, 0, 0);
+			result = DataResult.getInstance(new ArrayList<Map<String, Object>>(), 0, 0, 0);
 		}
 		return SUCCESS;
 	}
@@ -404,8 +400,7 @@ public class ActionIndex extends WebSupport {
 	 * @return
 	 */
 	public String index() {
-		if (typeid != null && !typeid.toUpperCase().trim().equals("NONE")
-				&& !typeid.toUpperCase().trim().equals("")) {
+		if (typeid != null && !typeid.toUpperCase().trim().equals("NONE") && !typeid.toUpperCase().trim().equals("")) {
 			doctype = docIMP.getType(typeid);
 			doc = new FarmDoc();
 			List<FarmDoctype> typelist = new ArrayList<FarmDoctype>();
@@ -435,8 +430,7 @@ public class ActionIndex extends WebSupport {
 			doc = docIMP.getDoc(id);
 			// 解决kindedit中HTML脚本被转义的问题
 			doc.getTexts().setText1(
-					doc.getTexts().getText1().replaceAll("&gt;", "&amp;gt;")
-							.replaceAll("&lt;", "&amp;lt;"));
+					doc.getTexts().getText1().replaceAll("&gt;", "&amp;gt;").replaceAll("&lt;", "&amp;lt;"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -452,50 +446,44 @@ public class ActionIndex extends WebSupport {
 		result = knowIMP.getNewKnowList(10);
 		for (Map<String, Object> node : result.getResultList()) {
 			if (node.get("PHOTOID") != null) {
-				node.put("PHOTOURL",
-						fileIMP.getFileURL(node.get("PHOTOID").toString()));
+				node.put("PHOTOURL", fileIMP.getFileURL(node.get("PHOTOID").toString()));
 			}
 		}
 		return SUCCESS;
 	}
-	
+
 	/**
 	 * 显示公开的最新知识图片
 	 * 
 	 * @return
 	 */
-	public String showNewImageList(){
-		
+	public String showNewImageList() {
+
 		try {
 			query = DataQuery
-					.init(
-							query,
+					.init(query,
 							"FARM_RF_DOCTEXTFILE a LEFT JOIN FARM_DOC b ON a.DOCID=b.ID LEFT JOIN FARM_DOCFILE c ON a.FILEID=c.ID ",
 							" B.ID AS DOCID,B.TITLE as TITLE,C.EXNAME  AS EXNAME,C.NAME as NAME,C.ID AS FILEID,C.PSTATE ");
 			query.setPagesize(30);
 			query.addRule(new DBRule("b.READPOP", "1", "="));
 			query.addSort(new DBSort("b.ETIME", "desc"));
 			query.setDistinct(true);
-			query.setCache(Integer.valueOf(FarmService.getInstance()
-					.getParameterService().getParameter(
-							"config.wcp.cache.imgwall")), CACHE_UNIT.minute);
-			query
-					.addSqlRule(" AND REPLACE(UPPER(c.EXNAME),'.','')  IN ('PNG','JPG','GIF')");
+			query.setCache(
+					Integer.valueOf(FarmService.getInstance().getParameterService()
+							.getParameter("config.wcp.cache.imgwall")), CACHE_UNIT.minute);
+			query.addSqlRule(" AND REPLACE(UPPER(c.EXNAME),'.','')  IN ('PNG','JPG','GIF')");
 			result = query.search();
 			List<String> docids = new ArrayList<String>();
 			for (Map<String, Object> node : result.getResultList()) {
-				node.put("URL", fileIMP.getFileURL(node.get("FILEID")
-						.toString()));
-				if(docids.size()==0){
+				node.put("URL", fileIMP.getFileURL(node.get("FILEID").toString()));
+				if (docids.size() == 0) {
 					docids.add(node.get("DOCID").toString());
 					node.put("DISPLAY", 1);
-				}
-				else{
-					if(docids.size()<=5&&!docids.contains(node.get("DOCID").toString())){
+				} else {
+					if (docids.size() <= 5 && !docids.contains(node.get("DOCID").toString())) {
 						docids.add(node.get("DOCID").toString());
 						node.put("DISPLAY", 1);
-					}
-					else{
+					} else {
 						node.put("DISPLAY", 0);
 					}
 				}
@@ -503,7 +491,7 @@ public class ActionIndex extends WebSupport {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return SUCCESS;
 	}
 
@@ -513,18 +501,14 @@ public class ActionIndex extends WebSupport {
 	 * @return
 	 */
 	public String showhotDocList() {
-		DataQuery query = DataQuery
-				.getInstance(
-						"1",
-						"A.ID AS ID,A.AUTHOR AS AUTHOR, A.TITLE  AS TITLE, DOMTYPE, B.HOTNUM AS HOTNUM",
-						"farm_doc a LEFT JOIN farm_docruninfo b ON a.RUNINFOID = b.ID");
+		DataQuery query = DataQuery.getInstance("1",
+				"A.ID AS ID,A.AUTHOR AS AUTHOR, A.TITLE  AS TITLE, DOMTYPE, B.HOTNUM AS HOTNUM",
+				"farm_doc a LEFT JOIN farm_docruninfo b ON a.RUNINFOID = b.ID");
 		query.addRule(new DBRule("a.READPOP", "1", "="));
 		query.addSort(new DBSort("b.HOTNUM", "desc"));
 		query.setNoCount();
-		query.setCache(
-				Integer.valueOf(FarmService.getInstance().getParameterService()
-						.getParameter("config.wcp.cache.hotdoc")),
-				CACHE_UNIT.minute);
+		query.setCache(Integer.valueOf(FarmService.getInstance().getParameterService()
+				.getParameter("config.wcp.cache.hotdoc")), CACHE_UNIT.minute);
 		query.setPagesize(10);
 		result = null;
 		try {
@@ -564,15 +548,11 @@ public class ActionIndex extends WebSupport {
 		}
 		try {
 
-			query = knowIMP
-					.getTypeDocQuery(query)
-					.addRule(
-							new DBRule("d.TREECODE", doctype.getTreecode(),
-									"like-"))
-					// 文章三种情况判断
-					// 1.文章阅读权限为公共
-					// 2.文章的创建者为当前登录用户
-					// 3.文章的阅读权限为小组，并且当前登陆用户为组内成员.(使用子查询处理)
+			query = knowIMP.getTypeDocQuery(query).addRule(new DBRule("d.TREECODE", doctype.getTreecode(), "like-"))
+			// 文章三种情况判断
+			// 1.文章阅读权限为公共
+			// 2.文章的创建者为当前登录用户
+			// 3.文章的阅读权限为小组，并且当前登陆用户为组内成员.(使用子查询处理)
 					.addSqlRule(
 							"and (a.READPOP='1' or a.CUSER='"
 									+ userid
@@ -584,8 +564,7 @@ public class ActionIndex extends WebSupport {
 			for (Map<String, Object> node : result.getResultList()) {
 				String tags = node.get("TAGKEY").toString();
 				if (tags != null && tags.trim().length() > 0) {
-					String[] tags1 = tags.trim().replaceAll("，", ",")
-							.replaceAll("、", ",").split(",");
+					String[] tags1 = tags.trim().replaceAll("，", ",").replaceAll("、", ",").split(",");
 					node.put("TAGKEY", Arrays.asList(tags1));
 				} else {
 					node.put("TAGKEY", new ArrayList<String>());
@@ -606,12 +585,10 @@ public class ActionIndex extends WebSupport {
 		try {
 			result = knowIMP.getMyDocQuery(query, getCurrentUser()).search();
 			for (Map<String, Object> node : result.getResultList()) {
-				node.put("PUBTIME", FarmFormatUnits.getFormateTime(
-						node.get("PUBTIME").toString(), true));
+				node.put("PUBTIME", FarmFormatUnits.getFormateTime(node.get("PUBTIME").toString(), true));
 				String tags = node.get("TAGKEY").toString();
 				if (tags != null && tags.trim().length() > 0) {
-					String[] tags1 = tags.trim().replaceAll("，", ",")
-							.replaceAll("、", ",").split(",");
+					String[] tags1 = tags.trim().replaceAll("，", ",").replaceAll("、", ",").split(",");
 					node.put("TAGKEY", Arrays.asList(tags1));
 				} else {
 					node.put("TAGKEY", new ArrayList<String>());
@@ -633,12 +610,10 @@ public class ActionIndex extends WebSupport {
 			user = userIMP.getUserEntity(getCurrentUser().getId());
 			result = knowIMP.getMyDocQuery(query, user).search();
 			for (Map<String, Object> node : result.getResultList()) {
-				node.put("PUBTIME", FarmFormatUnits.getFormateTime(
-						node.get("PUBTIME").toString(), true));
+				node.put("PUBTIME", FarmFormatUnits.getFormateTime(node.get("PUBTIME").toString(), true));
 				String tags = node.get("TAGKEY").toString();
 				if (tags != null && tags.trim().length() > 0) {
-					String[] tags1 = tags.trim().replaceAll("，", ",")
-							.replaceAll("、", ",").split(",");
+					String[] tags1 = tags.trim().replaceAll("，", ",").replaceAll("、", ",").split(",");
 					node.put("TAGKEY", Arrays.asList(tags1));
 				} else {
 					node.put("TAGKEY", new ArrayList<String>());
@@ -701,8 +676,7 @@ public class ActionIndex extends WebSupport {
 	 */
 	public String showChooseTypeList() {
 		try {
-			DataQuery query = DataQuery.getInstance("1", "NAME,ID,PARENTID",
-					"farm_doctype ");
+			DataQuery query = DataQuery.getInstance("1", "NAME,ID,PARENTID", "farm_doctype ");
 			query.setPagesize(1000);
 			query.addSqlRule("and (TYPE='1' OR TYPE='3') AND PSTATE ='1'");
 			query.addSort(new DBSort("SORT", "ASC"));
@@ -723,9 +697,8 @@ public class ActionIndex extends WebSupport {
 			if ("0".equals(docgroup)) {
 				docgroup = null;
 			}
-			id = knowIMP.creatKnow(knowtitle, knowtype, text, knowtag,
-					POP_TYPE.getEnum(writetype), POP_TYPE.getEnum(readtype),
-					docgroup, getCurrentUser()).getId();
+			id = knowIMP.creatKnow(knowtitle, knowtype, text, knowtag, POP_TYPE.getEnum(writetype),
+					POP_TYPE.getEnum(readtype), docgroup, getCurrentUser()).getId();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -744,17 +717,14 @@ public class ActionIndex extends WebSupport {
 			}
 			// 高级权限用户修改
 			if (operateIMP.isDel(getCurrentUser(), docIMP.getDocOnlyBean(id))) {
-				id = knowIMP.editKnow(id, knowtitle, knowtype, text, knowtag,
-						POP_TYPE.getEnum(writetype),
-						POP_TYPE.getEnum(readtype), docgroup, getCurrentUser(),
-						editNote).getId();
+				id = knowIMP.editKnow(id, knowtitle, knowtype, text, knowtag, POP_TYPE.getEnum(writetype),
+						POP_TYPE.getEnum(readtype), docgroup, getCurrentUser(), editNote).getId();
 				return SUCCESS;
 
 			}
 			// 低级权限用户修改
 			{
-				id = knowIMP.editKnow(id, text, knowtag, getCurrentUser(),
-						editNote).getId();
+				id = knowIMP.editKnow(id, text, knowtag, getCurrentUser(), editNote).getId();
 			}
 
 		} catch (Exception e) {
@@ -773,12 +743,9 @@ public class ActionIndex extends WebSupport {
 			docIMP.deleteDoc(id, getCurrentUser());
 			try {
 				DocIndexInter index = FarmLuceneFace.inctance().getDocIndex(
-						FarmLuceneFace.inctance().getIndexPathFile(
-								WcpKnowManagerImpl.LUCENE_DIR));
-				DocIndexInter webFileIndex = FarmLuceneFace.inctance()
-						.getDocIndex(
-								FarmLuceneFace.inctance().getIndexPathFile(
-										WcpWebFileManagerInter.LUCENE_DIR));
+						FarmLuceneFace.inctance().getIndexPathFile(WcpKnowManagerImpl.LUCENE_DIR));
+				DocIndexInter webFileIndex = FarmLuceneFace.inctance().getDocIndex(
+						FarmLuceneFace.inctance().getIndexPathFile(WcpWebFileManagerInter.LUCENE_DIR));
 				index.deleteFhysicsIndex(id);
 				webFileIndex.deleteFhysicsIndex(id);
 			} catch (Exception e) {
@@ -798,12 +765,10 @@ public class ActionIndex extends WebSupport {
 	@SuppressWarnings("deprecation")
 	public String flyKnow() {
 		try {
-			FarmDocService.getInstance().getOperateRightService()
-					.flyDoc(id, getCurrentUser());
+			FarmDocService.getInstance().getOperateRightService().flyDoc(id, getCurrentUser());
 			try {
 				DocIndexInter index = FarmLuceneFace.inctance().getDocIndex(
-						FarmLuceneFace.inctance().getIndexPathFile(
-								WcpKnowManagerImpl.LUCENE_DIR));
+						FarmLuceneFace.inctance().getIndexPathFile(WcpKnowManagerImpl.LUCENE_DIR));
 				index.indexDoc(LuceneDocUtil.getDocMap(docIMP.getDoc(id)));
 				index.close();
 			} catch (Exception e) {
@@ -826,8 +791,7 @@ public class ActionIndex extends WebSupport {
 			}
 			docRunInfoIMP.visitDoc(id, getCurrentUser(), getCurrentIp());
 			if (getCurrentUser() != null) {
-				isenjoy = docRunInfoIMP
-						.isEnjoyDoc(getCurrentUser().getId(), id);
+				isenjoy = docRunInfoIMP.isEnjoyDoc(getCurrentUser().getId(), id);
 			}
 			List<FarmDoctype> types = doc.getTypes();
 			if (types != null && types.size() > 0) {
@@ -835,8 +799,7 @@ public class ActionIndex extends WebSupport {
 			}
 			fileTypes = new HashSet<String>();
 			for (FarmDocfile node : doc.getFiles()) {
-				fileTypes.add(node.getExname().trim().replace(".", "")
-						.toUpperCase());
+				fileTypes.add(node.getExname().trim().replace(".", "").toUpperCase());
 			}
 		} catch (CanNoReadException e) {
 			pageset = PageSet.setError(pageset, e, e.getMessage());
@@ -845,22 +808,19 @@ public class ActionIndex extends WebSupport {
 			return "ERROR";
 		} catch (DocNoExistException e) {
 			DocIndexInter index = FarmLuceneFace.inctance().getDocIndex(
-					FarmLuceneFace.inctance().getIndexPathFile(
-							WcpKnowManagerInter.LUCENE_DIR));
+					FarmLuceneFace.inctance().getIndexPathFile(WcpKnowManagerInter.LUCENE_DIR));
 			index.deleteFhysicsIndex(id);
 			DocIndexInter webfileindex = FarmLuceneFace.inctance().getDocIndex(
-					FarmLuceneFace.inctance().getIndexPathFile(
-							WcpWebFileManagerInter.LUCENE_DIR));
+					FarmLuceneFace.inctance().getIndexPathFile(WcpWebFileManagerInter.LUCENE_DIR));
 			webfileindex.deleteFhysicsIndex(id);
-			
-			
+
 			pageset = PageSet.setError(pageset, e, e.getMessage());
 			pageset.setMessage(e.getMessage());
 			return "ERROR";
 		}
 		return SUCCESS;
 	}
-	
+
 	public String byNumber() {
 		DataQuery query = DataQuery
 				.getInstance(
@@ -869,20 +829,20 @@ public class ActionIndex extends WebSupport {
 						"farm_doc a LEFT JOIN farm_docruninfo b ON a.RUNINFOID=b.ID LEFT JOIN farm_rf_doctype c ON c.DOCID=a.ID LEFT JOIN farm_doctype d ON d.ID=c.TYPEID   LEFT JOIN ALONE_AUTH_USER e ON e.ID=a.CUSER");
 		query.addRule(new DBRule("a.READPOP", "1", "="));
 		query.addRule(new DBRule("a.STATE", "1", "="));
-		query.addSort(new DBSort("a.etime", "desc"));		
+		query.addSort(new DBSort("a.etime", "desc"));
 		query.setNoCount();
 		try {
 			result = query.search();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		List<Map<String, Object>> resultList = new ArrayList<Map<String,Object>>();
+		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
 		for (Map<String, Object> node : result.getResultList()) {
-			
+
 			String year = id.split("-")[0].toString();
 			String num = id.split("-")[1].toString();
-			
-			if(node.get("TAGKEY").toString().contains(year) && node.get("TAGKEY").toString().contains(num)){
+
+			if (node.get("TAGKEY").toString().contains(year) && node.get("TAGKEY").toString().contains(num)) {
 				node.put("PUBTIME", FarmFormatUnits.getFormateTime(node.get("PUBTIME").toString(), true));
 				String tags = node.get("TAGKEY") != null ? node.get("TAGKEY").toString() : null;
 				if (tags != null && tags.trim().length() > 0) {
@@ -893,8 +853,8 @@ public class ActionIndex extends WebSupport {
 				}
 				node.put("DOCDESCRIBE", node.get("DOCDESCRIBE").toString().replaceAll("<", "").replaceAll(">", ""));
 				resultList.add(node);
-			}		
-			
+			}
+
 		}
 		result.setResultList(resultList);
 		return SUCCESS;
@@ -915,24 +875,38 @@ public class ActionIndex extends WebSupport {
 		}
 		return SUCCESS;
 	}
-	
-	
+
 	/**
 	 * 显示Tag列表
 	 * 
 	 * @return
 	 */
 	public String showTopTagList() {
-		result = knowIMP.getAllTags(10);
+		List<Map<String, Object>> all = knowIMP.getAllTags().getResultList();
+		setYearWenhao(new HashMap<Integer, List<Map<String, Object>>>());
+
+		setYears(new ArrayList<Integer>());
+		for (Map<String, Object> node : all) {
+			String tag = node.get("TAGKEY").toString();
+			String year = tag.toString().substring(4, 8);
+			Integer y = Integer.parseInt(year);
+
+			if (getYearWenhao().containsKey(y)) {
+				getYearWenhao().get(y).add(node);
+			} else {
+				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				list.add(node);
+				getYearWenhao().put(y, list);
+			}
+		}
+		getYears().addAll(getYearWenhao().keySet());
+		Collections.sort(getYears(), Collections.reverseOrder());
 		return SUCCESS;
 	}
 
-	private final FarmFileManagerInter fileIMP = (FarmFileManagerInter) BeanFactory
-			.getBean("farm_docFileProxyId");
-	private final static WcpKnowManagerInter knowIMP = (WcpKnowManagerInter) BeanFactory
-			.getBean("wcp_KnowProxyId");
-	private final static FarmDocManagerInter docIMP = (FarmDocManagerInter) BeanFactory
-			.getBean("farm_docProxyId");
+	private final FarmFileManagerInter fileIMP = (FarmFileManagerInter) BeanFactory.getBean("farm_docFileProxyId");
+	private final static WcpKnowManagerInter knowIMP = (WcpKnowManagerInter) BeanFactory.getBean("wcp_KnowProxyId");
+	private final static FarmDocManagerInter docIMP = (FarmDocManagerInter) BeanFactory.getBean("farm_docProxyId");
 	private final static FarmDocRunInfoInter docRunInfoIMP = (FarmDocRunInfoInter) BeanFactory
 			.getBean("farm_docRunInfoProxyId");
 	private final static FarmDocOperateRightInter operateIMP = (FarmDocOperateRightInter) BeanFactory
@@ -1145,6 +1119,22 @@ public class ActionIndex extends WebSupport {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public HashMap<Integer, List<Map<String, Object>>> getYearWenhao() {
+		return yearWenhao;
+	}
+
+	public void setYearWenhao(HashMap<Integer, List<Map<String, Object>>> yearWenhao) {
+		this.yearWenhao = yearWenhao;
+	}
+
+	public List<Integer> getYears() {
+		return years;
+	}
+
+	public void setYears(List<Integer> years) {
+		this.years = years;
 	}
 
 }
