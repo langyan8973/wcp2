@@ -827,6 +827,7 @@ public class ActionIndex extends WebSupport {
 						"1",
 						"a.ID as ID,a.TITLE AS title,a.CUSER as CUSER,a.DOCDESCRIBE AS DOCDESCRIBE,DOMTYPE,a.AUTHOR AS AUTHOR,a.PUBTIME AS PUBTIME,a.TAGKEY AS TAGKEY ,a.IMGID AS IMGID,b.VISITNUM AS VISITNUM,b.PRAISEYES AS PRAISEYES,b.PRAISENO AS PRAISENO,b.HOTNUM AS HOTNUM,d.NAME AS TYPENAME,e.IMGID AS PHOTOID,A.ETIME AS ETIME",
 						"farm_doc a LEFT JOIN farm_docruninfo b ON a.RUNINFOID=b.ID LEFT JOIN farm_rf_doctype c ON c.DOCID=a.ID LEFT JOIN farm_doctype d ON d.ID=c.TYPEID   LEFT JOIN ALONE_AUTH_USER e ON e.ID=a.CUSER");
+		query.setPagesize(1000);
 		query.addRule(new DBRule("a.READPOP", "1", "="));
 		query.addRule(new DBRule("a.STATE", "1", "="));
 		query.addSort(new DBSort("a.etime", "desc"));
@@ -837,12 +838,11 @@ public class ActionIndex extends WebSupport {
 			e.printStackTrace();
 		}
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+		String year = id.split("-")[0].toString();
+		String num = id.split("-")[1].toString();
 		for (Map<String, Object> node : result.getResultList()) {
-
-			String year = id.split("-")[0].toString();
-			String num = id.split("-")[1].toString();
-
-			if (node.get("TAGKEY").toString().contains(year) && node.get("TAGKEY").toString().contains(num)) {
+			String keyString = node.get("TAGKEY").toString();
+			if (keyString.contains(year) && keyString.contains(num)) {
 				node.put("PUBTIME", FarmFormatUnits.getFormateTime(node.get("PUBTIME").toString(), true));
 				String tags = node.get("TAGKEY") != null ? node.get("TAGKEY").toString() : null;
 				if (tags != null && tags.trim().length() > 0) {

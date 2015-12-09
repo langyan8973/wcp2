@@ -37,11 +37,11 @@ a {
 	margin-top:11px;
 	margin-bottom:11px;
 }
-@media (min-width: 768px) {
+@media (min-width: 168px) {
   .navbar-title {
     float:left;
-    margin-right: 103px;
-    margin-left: 103px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
 }
 
